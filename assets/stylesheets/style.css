@@ -99,10 +99,8 @@ header {
 .setup {
   width: calc(29vw + 3rem);
   text-align: center;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(249, 211, 188, 0.5);
   border-radius: 10px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
   button {
     border-top-left-radius: 0;
@@ -145,15 +143,14 @@ header {
   font-family: "Varela Round", sans-serif;
   font-size: 6em;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(249, 211, 188, 0.5);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   transition: opacity 0.5s, background-color 0.5s;
 }
 
 .winning-cell {
-  background-color: rgba(255, 255, 255, 0.5);
+  background: rgba(249, 211, 188, 0.75);
   opacity: 1 !important;
 }
 

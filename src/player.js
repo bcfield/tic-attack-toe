@@ -32,7 +32,9 @@ startJourneyButton.addEventListener('click', () => {
     controlIcons.classList.remove('fade-out');
     controlIcons.classList.add('fade-in');
 
-    fadeOut(welcomeScreen, () => fadeIn(player1Setup));
+    fadeOut(welcomeScreen, () => fadeIn(player1Setup, () => {
+        document.getElementById('player1-name').focus();
+    }));
 });
 
 showHistoryButton.addEventListener('click', () => {
@@ -85,17 +87,24 @@ function proceedToNextSetup(playerId, nextSetup) {
 
     if (playerName && selectedColor) {
         players[playerId === 'player1' ? 0 : 1] = { name: playerName, color: selectedColor.dataset.color, symbol: playerId === 'player1' ? 'X' : 'O' };
-        fadeOut(document.getElementById(`${playerId}-setup`), () => fadeIn(nextSetup));
+        fadeOut(document.getElementById(`${playerId}-setup`), () => fadeIn(nextSetup, () => {
+            if (playerId === 'player1') {
+                document.getElementById('player2-name').focus();
+            }
+        }));
     } else {
         const nextButton = document.getElementById(`${playerId}-next`);
         nextButton.disabled = true;
     }
 }
 
-function fadeIn(element) {
+function fadeIn(element, callback) {
     element.classList.remove('hidden');
     element.classList.add('fade-in');
     element.classList.remove('fade-out');
+    if (callback) {
+        callback();
+    }
 }
 
 function fadeOut(element, callback) {
@@ -104,7 +113,9 @@ function fadeOut(element, callback) {
     element.addEventListener('animationend', function handler() {
         element.classList.add('hidden');
         element.removeEventListener('animationend', handler);
-        callback();
+        if (callback) {
+            callback();
+        }
     });
 }
 
@@ -188,12 +199,6 @@ function exitFullscreen() {
 fullscreenIcon.addEventListener('click', enterFullscreen);
 fullscreenExitIcon.addEventListener('click', exitFullscreen);
 
-// Home icon click handler
 homeIcon.addEventListener('click', () => {
-    fadeOut(gameSetup, () => {
-        fadeIn(welcomeScreen);
-        gameTitle.classList.remove('slide-up');
-        controlIcons.classList.remove('fade-in');
-        controlIcons.classList.add('fade-out');
-    });
+    location.reload();
 });

@@ -68,6 +68,10 @@ function displayResult(message, isWin) {
                 cell.style.opacity = '0.5';
             }
         });
+    } else {
+        Array.from(board.children).forEach(cell => {
+            cell.style.opacity = '0.5';
+        });
     }
 }
 
