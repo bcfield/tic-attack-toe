@@ -30,7 +30,6 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
-/* Remove browser default styling for input elements */
 input,
 textarea,
 select,
@@ -42,7 +41,6 @@ button {
     outline: none;
 }
 
-/* Remove browser default focus styles */
 input:focus,
 textarea:focus,
 select:focus,
@@ -51,7 +49,6 @@ button:focus {
     box-shadow: none;
 }
 
-/* Remove browser default hover and active styles */
 input:hover,
 textarea:hover,
 select:hover,

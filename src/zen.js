@@ -1,39 +1,37 @@
-const resetGameButton = document.getElementById('reset-game');
-const board = document.getElementById('tic-tac-toe-board');
-const turnIndicator = document.getElementById('turn-indicator');
-
-let currentPlayerIndex = 0;
-let gameBoard = ['', '', '', '', '', '', '', '', ''];
-
 resetGameButton.addEventListener('click', () => {
-    resetGame();
+    resetZenGame();
 });
 
-function createBoard() {
-    board.innerHTML = ''; // Clear existing board
+function createZenBoard() {
+    board.innerHTML = '';
+    gameBoard = ['', '', '', '', '', '', '', '', ''];
     gameBoard.forEach((cell, index) => {
         const cellElement = document.createElement('div');
         cellElement.classList.add('cell');
-        cellElement.addEventListener('click', () => handleClick(index));
+        cellElement.addEventListener('click', () => handleZenClick(index));
         board.appendChild(cellElement);
     });
+    turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
+    player1ProgressBar.classList.add('hidden');
+    player2ProgressBar.classList.add('hidden');
+
 }
 
-function handleClick(index) {
-    if (gameBoard[index] !== '') return;
+function handleZenClick(index) {
+    if (gameBoard[index] !== '') return; // Prevent overwriting moves
 
     gameBoard[index] = players[currentPlayerIndex].symbol;
     const cellElement = board.children[index];
     cellElement.textContent = players[currentPlayerIndex].symbol;
     cellElement.style.color = players[currentPlayerIndex].color;
 
-    if (checkWinner()) {
-        displayResult(`${players[currentPlayerIndex].name} is victorious!`, true);
+    if (checkZenWinner()) {
+        displayZenResult(`${players[currentPlayerIndex].name} is victorious!`, true);
         return;
     }
 
     if (!gameBoard.includes('')) {
-        displayResult('It\'s a draw!', false);
+        displayZenResult('It\'s a draw!', false);
         return;
     }
 
@@ -41,7 +39,7 @@ function handleClick(index) {
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
 }
 
-function checkWinner() {
+function checkZenWinner() {
     const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -51,7 +49,7 @@ function checkWinner() {
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
         if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-            highlightWinningCombination(combination);
+            highlightZenWinningCombination(combination);
             return true;
         }
     }
@@ -59,7 +57,7 @@ function checkWinner() {
     return false;
 }
 
-function displayResult(message, isWin) {
+function displayZenResult(message, isWin) {
     turnIndicator.textContent = message;
 
     if (isWin) {
@@ -75,13 +73,13 @@ function displayResult(message, isWin) {
     }
 }
 
-function highlightWinningCombination(combination) {
+function highlightZenWinningCombination(combination) {
     combination.forEach(index => {
         board.children[index].classList.add('winning-cell');
     });
 }
 
-function resetGame() {
+function resetZenGame() {
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     Array.from(board.children).forEach(cell => {
         cell.textContent = '';
@@ -91,7 +89,8 @@ function resetGame() {
     });
     currentPlayerIndex = Math.floor(Math.random() * 2);
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
+    isGameActive = true;
 }
 
 // Initialize the board
-createBoard();
+createZenBoard();

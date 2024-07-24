@@ -1,3 +1,16 @@
+/*
+black         #000000     rgba(0,0,0,0.5)
+white         #ffffff     rgba(255,255,255,0.5)
+grey          #808080     rgba(128,128,128,0.5)
+background    #f9d3bc     rgba(249,211,188,0.5)
+plum          #31102f     rgba(49,16,47,0.5)
+cherry        #5b0134     rgba(91,1,52,0.5)
+apple         #84002f     rgba(132,0,47,0.5)
+orange        #fb5231     rgba(251,82,49,0.5)
+peach         #fa783e     rgba(250,120,62,0.5)
+light         #f8e2d5     rgba(248,226,213,0.5)
+*/
+
 html {
   background-color: #f9d3bc;
   height: 100%;
@@ -99,9 +112,8 @@ header {
 .setup {
   width: calc(29vw + 3rem);
   text-align: center;
-  background: rgba(249, 211, 188, 0.5);
+  background: rgba(248,226,213,0.65);
   border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
   button {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -109,6 +121,11 @@ header {
   &.small {
     width: calc((29vw + 3rem) / 3 * 2);
   }
+}
+.countdown {
+  position: fixed;
+  bottom: 10vh;
+  text-align: center;
 }
 
 #game-title {
@@ -143,14 +160,12 @@ header {
   font-family: "Varela Round", sans-serif;
   font-size: 6em;
   cursor: pointer;
-  background: rgba(249, 211, 188, 0.5);
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  background: rgba(248,226,213,0.65);
   border-radius: 10px;
   transition: opacity 0.5s, background-color 0.5s;
 }
 
 .winning-cell {
-  background: rgba(249, 211, 188, 0.75);
   opacity: 1 !important;
 }
 
@@ -178,12 +193,17 @@ header {
   background-color: #fa783e;
 }
 
-#countdown-message {
-  font-size: 2em;
-  margin-bottom: 1em;
+#countdown-timer {
+  color: #f9d3bc;
+  font-size: 8em;
+  font-weight: bold;
+  line-height: 1;
 }
 
-#countdown-timer {
-  font-size: 5em;
-  font-weight: bold;
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: grey;
+  border-radius: 10px;
+  transition: width 0.1s linear;
 }

@@ -22,6 +22,9 @@
 
     <div id="control-icons" class="hidden">
         <span id="home-icon" class="material-symbols-outlined">replay</span>
+        <span id="help-icon" class="material-symbols-outlined">help</span>
+        <span id="controls-icon" class="material-symbols-outlined">joystick</span>
+        <span id="history-icon" class="material-symbols-outlined">history_edu</span>
         <span id="fullscreen-icon" class="material-symbols-outlined">fullscreen</span>
         <span id="fullscreen-exit-icon" class="material-symbols-outlined hidden">fullscreen_exit</span>
     </div>
@@ -33,8 +36,7 @@
             Maecenas faucibus mollis interdum.
             Cras mattis consectetur purus sit amet fermentum.
         </p>
-        <button id="show-history" class="mx-2">history</button>
-        <button id="start-journey" class="mx-2">begin</button>
+        <button id="start-journey" class="large">begin</button>
     </div>
 
     <div id="history-screen" class="hidden">
@@ -134,30 +136,42 @@
         </div>
     </div>
 
-    <div id="countdown-screen" class="setup hidden">
-        <div class="setup-header">
-            <h2>Get Ready!</h2>
-        </div>
+    <div id="countdown-screen" class="countdown hidden">
         <div class="py-4 px-5">
             <div class="block">
-                <p id="countdown-message"></p>
-                <p id="countdown-timer" class="text-cherry"></p>
+                <h5 class="text-orange">GAME STARTS IN</h5>
+                <p id="countdown-timer"></p>
+                <h5 id="countdown-message" class="text-orange text-uppercase"></h5>
             </div>
         </div>
     </div>
 
+    <div id="scoreboard-screen" class="setup hidden">
+        <h2>Round Results</h2>
+        <p id="round-results"></p>
+        <p id="next-player"></p>
+        <p id="countdown-timer" class="text-light"></p>
+    </div>
+
     <div id="game-setup" class="hidden">
+        <div class="block">
+            <h3 id="player1-name-display"></h3>
+            <div id="player1-progress-bar" class="progress-bar mb-4"></div>
+            <h3 id="player2-name-display"></h3>
+            <div id="player2-progress-bar" class="progress-bar"></div>
+        </div>
         <div class="block">
             <h2 id="turn-indicator"></h2>
         </div>
         <div class="block mb-6">
             <div id="tic-tac-toe-board"></div>
         </div>
-        <button id="reset-game" class="fullwidth">reset game</button>
+        <button id="reset-game" class="fullwidth">restart game</button>
     </div>
-
-    <script src="../src/player.js"></script>
-    <script src="../src/game.js"></script>
+    
+    <script src="src/player.js"></script>
+    <script src="src/zen.js"></script>
+    <script src="src/battle.js"></script>
 
 </body>
 </html>
