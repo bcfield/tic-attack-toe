@@ -1,0 +1,65 @@
+/* https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+/* Remove browser default styling for input elements */
+input,
+textarea,
+select,
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+}
+
+/* Remove browser default focus styles */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Remove browser default hover and active styles */
+input:hover,
+textarea:hover,
+select:hover,
+button:hover,
+input:active,
+textarea:active,
+select:active,
+button:active {
+    outline: none;
+    box-shadow: none;
+}

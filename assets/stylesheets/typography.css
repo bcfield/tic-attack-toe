@@ -1,0 +1,59 @@
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+p {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-grey {
+  color: #808080;
+}
+
+.text-plum {
+  color: #31102f;
+}
+
+.text-cherry {
+  color: #5b0134;
+}
+
+.text-apple {
+  color: #84002f;
+}
+
+.text-orange {
+  color: #fb5231;
+}
+
+.text-peach {
+  color: #fa783e;
+}
+
+.text-light {
+  color: #f6e3d5;
+}
+
+.material-symbols-outlined {
+  cursor: pointer;
+  font-size: 2rem;
+  margin-right: 0.75rem;
+}

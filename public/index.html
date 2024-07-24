@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Attack Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/stylesheets/reset.css">
+    <link rel="stylesheet" href="../assets/stylesheets/style.css">
+    <link rel="stylesheet" href="../assets/stylesheets/spacing.css">
+    <link rel="stylesheet" href="../assets/stylesheets/typography.css">
+    <link rel="stylesheet" href="../assets/stylesheets/forms.css">
+</head>
+<body>
+
+    <header id="game-title">
+        <h1>TIC ATTACK TOE</h1>
+    </header>
+
+    <div id="control-icons" class="hidden">
+        <span id="home-icon" class="material-symbols-outlined">replay</span>
+        <span id="fullscreen-icon" class="material-symbols-outlined">fullscreen</span>
+        <span id="fullscreen-exit-icon" class="material-symbols-outlined hidden">fullscreen_exit</span>
+    </div>
+
+    <div id="welcome-screen">
+        <p class="text-light mb-6">
+            Welcome to Tic ATTACK Toe! Enjoy the classic game with a twist.
+            Click the button below to begin your journey.
+            Maecenas faucibus mollis interdum.
+            Cras mattis consectetur purus sit amet fermentum.
+        </p>
+        <button id="show-history" class="mx-2">history</button>
+        <button id="start-journey" class="mx-2">begin</button>
+    </div>
+
+    <div id="history-screen" class="hidden">
+        <p class="text-light mb-6">
+            Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas faucibus mollis interdum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.
+            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper.
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        </p>
+        <button id="show-welcome">back</button>
+    </div>
+
+    <div id="player1-setup" class="setup hidden">
+        <div class="setup-header">
+            <h2>attention player one</h2>
+        </div>
+        <div class="py-4 px-5">
+            <div class="block text-left">
+                <p class="mb-4">Your troops request a name to address their courageous leader, and the colours of a flag under which they will valiantly fight and die!</p>
+                <p class="text-cherry text-bold">Please enter your name and select a colour below to continue.</p>
+            </div>
+            <div class="block">
+                <input type="text" id="player1-name" class="fullwidth" placeholder="Enter your name..." required>
+            </div>
+            <div class="block mb-4">
+                <div id="player1-colors" class="color-options">
+                    <div class="color-circle bg-plum" data-color="#31102f"></div>
+                    <div class="color-circle bg-cherry" data-color="#5b0134"></div>
+                    <div class="color-circle bg-apple" data-color="#84002f"></div>
+                    <div class="color-circle bg-orange" data-color="#fb5231"></div>
+                    <div class="color-circle bg-peach" data-color="#fa783e"></div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <button id="player1-next" class="fullwidth" disabled>
+               <span class="button-text">continue</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="player2-setup" class="setup hidden">
+        <div class="setup-header">
+            <h2>attention player two</h2>
+        </div>
+        <div class="py-4 px-5">
+            <div class="block text-left">
+                <p class="mb-4">Your opposition has chosen well - be cautious to choose an equally formidable name and different colour, lest your troops begin fighting each other!</p>
+                <p class="text-cherry text-bold">Please enter your name and select a colour below to continue.</p>
+            </div>
+            <div class="block">
+                <input type="text" id="player2-name" class="fullwidth" placeholder="Enter your name..." required>
+            </div>
+            <div class="block mb-4">
+                <div id="player2-colors" class="color-options">
+                    <div class="color-circle bg-plum" data-color="#31102f"></div>
+                    <div class="color-circle bg-cherry" data-color="#5b0134"></div>
+                    <div class="color-circle bg-apple" data-color="#84002f"></div>
+                    <div class="color-circle bg-orange" data-color="#fb5231"></div>
+                    <div class="color-circle bg-peach" data-color="#fa783e"></div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <button id="player2-next" class="fullwidth" disabled>
+               <span class="button-text">continue</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="game-mode-setup" class="hidden">
+        <div class="game-modes">
+            <div class="setup small">
+                <div class="setup-header">
+                    <h2>zen mode</h2>
+                </div>
+                <div class="py-4 px-5">
+                    <div class="block text-left">
+                        <p class="mb-4">Play the classic tic tac toe without any timers.</p>
+                        <p class="text-cherry text-bold">Click the button below to begin.</p>
+                    </div>
+                </div>   
+                <button id="start-game" class="fullwidth">begin</button>
+            </div>
+            <div class="setup small">
+                <div class="setup-header">
+                    <h2>battle mode</h2>
+                </div>
+                <div class="py-4 px-5">
+                    <div class="block text-left">
+                        <p class="mb-4">Play a timed version.</p>
+                        <p class="text-cherry text-bold">Click the button below to begin.</p>
+                    </div>
+                </div>    
+                <button id="start-game-battle" class="fullwidth">begin</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="countdown-screen" class="setup hidden">
+        <div class="setup-header">
+            <h2>Get Ready!</h2>
+        </div>
+        <div class="py-4 px-5">
+            <div class="block">
+                <p id="countdown-message"></p>
+                <p id="countdown-timer" class="text-cherry"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-setup" class="hidden">
+        <div class="block">
+            <h2 id="turn-indicator"></h2>
+        </div>
+        <div class="block mb-6">
+            <div id="tic-tac-toe-board"></div>
+        </div>
+        <button id="reset-game" class="fullwidth">reset game</button>
+    </div>
+
+    <script src="../src/player.js"></script>
+    <script src="../src/game.js"></script>
+
+</body>
+</html>

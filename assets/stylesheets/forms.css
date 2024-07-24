@@ -1,0 +1,82 @@
+label {
+  text-align: left;
+}
+
+input {
+  background-color: #f6e3d5;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 7px;
+  color: #31102f;
+  font-size: 1.5rem;
+  font-weight: 600;
+  &.fullwidth {
+    width: 100%;
+  }
+}
+
+::placeholder {
+  opacity: 1;
+  color: #d5b5a2;
+  font-weight: 500;
+}
+
+::-ms-input-placeholder {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: #d5b5a2;
+  font-weight: 500;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 7px;
+  background-color: #fb5231;
+  color: #f6e3d5;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  &.fullwidth {
+    width: 100%;
+  }
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:disabled .button-text {
+  opacity: 0.5;
+}
+
+.color-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.color-circle {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+}
+
+.color-circle.selected {
+  border: 10px solid rgba(255,255,255,0.25);
+}
+  
+.color-circle.disabled {
+  opacity: 0.15;
+}  
