@@ -56,10 +56,6 @@ startJourneyButton.addEventListener('click', () => {
     }));
 });
 
-showWelcomeButton.addEventListener('click', () => {
-    fadeOut(historyScreen, () => fadeIn(welcomeScreen));
-});
-
 player1NextButton.addEventListener('click', () => {
     proceedToNextSetup('player1', player2Setup);
 });
@@ -89,22 +85,31 @@ startGameBattleButton.addEventListener('click', () => {
 document.addEventListener('keydown', (event) => {
     if (!isGameActive) return;
 
-    const keyBindings = {
+    const keyBindingsPlayer1 = {
         'q': 0, 'w': 1, 'e': 2,
         'a': 3, 's': 4, 'd': 5,
-        'z': 6, 'x': 7, 'c': 8,
+        'z': 6, 'x': 7, 'c': 8
+    };
+
+    const keyBindingsPlayer2 = {
         'i': 0, 'o': 1, 'p': 2,
         'k': 3, 'l': 4, ';': 5,
-        ',': 6, '.': 7, '/': 8,
-        '7': 0, '8': 1, '9': 2,
-        '4': 3, '5': 4, '6': 5,
-        '1': 6, '2': 7, '3': 8
+        ',': 6, '.': 7, '/': 8
     };
-    if (keyBindings.hasOwnProperty(event.key)) {
+
+    if (currentPlayerIndex === 0 && keyBindingsPlayer1.hasOwnProperty(event.key)) {
+        const cellIndex = keyBindingsPlayer1[event.key];
         if (gameMode === 'zen') {
-            handleZenClick(keyBindings[event.key]);
+            handleZenClick(cellIndex);
         } else if (gameMode === 'battle') {
-            handleBattleClick(keyBindings[event.key]);
+            handleBattleClick(cellIndex);
+        }
+    } else if (currentPlayerIndex === 1 && keyBindingsPlayer2.hasOwnProperty(event.key)) {
+        const cellIndex = keyBindingsPlayer2[event.key];
+        if (gameMode === 'zen') {
+            handleZenClick(cellIndex);
+        } else if (gameMode === 'battle') {
+            handleBattleClick(cellIndex);
         }
     }
 });

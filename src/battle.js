@@ -112,6 +112,7 @@ function handleBattleClick(index) {
         displayBattleResult(`${players[currentPlayerIndex].name} is victorious!`, currentPlayerIndex);
         players[currentPlayerIndex].score += 500;
         setTimeout(showScoreboard, 3000); // Show scoreboard after result
+        isGameActive = false;
         return;
     }
 

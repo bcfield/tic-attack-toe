@@ -20,6 +20,11 @@ p {
     text-align: left;
 }
 
+.text-center {
+  text-align: center;
+}
+
+
 .text-black {
   color: #000000;
 }
@@ -59,5 +64,9 @@ p {
 .material-symbols-outlined {
   cursor: pointer;
   font-size: 2rem;
-  margin-right: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  &.large {
+    font-size: 8rem;
+  }
 }

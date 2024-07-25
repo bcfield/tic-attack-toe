@@ -22,31 +22,21 @@
 
     <div id="control-icons" class="hidden">
         <span id="home-icon" class="material-symbols-outlined">replay</span>
-        <span id="help-icon" class="material-symbols-outlined">help</span>
-        <span id="controls-icon" class="material-symbols-outlined">joystick</span>
-        <span id="history-icon" class="material-symbols-outlined">history_edu</span>
         <span id="fullscreen-icon" class="material-symbols-outlined">fullscreen</span>
         <span id="fullscreen-exit-icon" class="material-symbols-outlined hidden">fullscreen_exit</span>
     </div>
 
     <div id="welcome-screen" class="fade-in">
-        <p class="text-light mb-6">
-            Welcome to Tic ATTACK Toe! Enjoy the classic game with a twist.
-            Click the button below to begin your journey.
-            Maecenas faucibus mollis interdum.
-            Cras mattis consectetur purus sit amet fermentum.
-        </p>
-        <button id="start-journey" class="large">begin</button>
-    </div>
-
-    <div id="history-screen" class="hidden">
-        <p class="text-light mb-6">
-            Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Etiam porta sem malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas faucibus mollis interdum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo.
-            Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper.
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-        </p>
-        <button id="show-welcome">back</button>
+        <div class="block text-light">
+            <p>
+                "...a young king was appointed well before his time.
+                His predeessor fell gloriously in battle to tip the scales in favour of his people - but the war was far from over..."
+            </p>
+        </div>
+        <div class="block text-orange">
+            <h5 id="history-icon" class="mb-5" onclick="window.location.href='history.html'">read more about the lore and legend of the game</h5>
+        </div>
+        <button id="start-journey">begin</button>
     </div>
 
     <div id="player1-setup" class="setup hidden">
@@ -109,30 +99,78 @@
 
     <div id="game-mode-setup" class="hidden">
         <div class="game-modes">
-            <div class="setup small">
-                <div class="setup-header">
+
+            <div id="start-game" class="setup small">
+                <div class="setup-header mb-6">
                     <h2>zen mode</h2>
                 </div>
                 <div class="py-4 px-5">
+                    <div class="block">
+                        <span id="home-icon" class="material-symbols-outlined large text-orange">favorite</span>
+                    </div>
                     <div class="block text-left">
-                        <p class="mb-4">Play the classic tic tac toe without any timers.</p>
-                        <p class="text-cherry text-bold">Click the button below to begin.</p>
+                        <p class="mb-4">
+                            Refine your skills in the classic version of the game without any timers or fear of defeat.
+                        </p>
                     </div>
                 </div>   
-                <button id="start-game" class="fullwidth">begin</button>
+                <button class="fullwidth">practice</button>
             </div>
-            <div class="setup small">
-                <div class="setup-header">
+
+            <div id="start-game-battle" class="setup small">
+                <div class="setup-header mb-6">
                     <h2>battle mode</h2>
                 </div>
                 <div class="py-4 px-5">
+                    <div class="block">
+                        <span id="home-icon" class="material-symbols-outlined large text-apple">swords</span>
+                    </div>
                     <div class="block text-left">
-                        <p class="mb-4">Play a timed version.</p>
-                        <p class="text-cherry text-bold">Click the button below to begin.</p>
+                        <p class="mb-4">
+                            Battle a worthy opponent in a timed match of five rounds where only one can claim victory.
+                        </p>
                     </div>
                 </div>    
-                <button id="start-game-battle" class="fullwidth">begin</button>
+                <button class="fullwidth">fight</button>
             </div>
+
+            <div id="game-controls-left">
+                <h5 class="text-orange">KEYBOARD CONTROL</h5>
+                <h5 class="text-peach mb-4">PLAYER ONE</h5>
+                <div class="game-modes">
+                    <div class="control-layout">
+                        <div class="control-cell">Q</div>
+                        <div class="control-cell">W</div>
+                        <div class="control-cell">E</div>
+                        <div class="control-cell">A</div>
+                        <div class="control-cell">S</div>
+                        <div class="control-cell">D</div>
+                        <div class="control-cell">Z</div>
+                        <div class="control-cell">X</div>
+                        <div class="control-cell">C</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-controls-right">
+                <h5 class="text-orange">KEYBOARD CONTROL</h5>
+                <h5 class="text-peach mb-4">PLAYER TWO</h5>
+                <div class="game-modes">
+                    <div class="control-layout">
+                        <div class="control-cell">I</div>
+                        <div class="control-cell">O</div>
+                        <div class="control-cell">P</div>
+                        <div class="control-cell">K</div>
+                        <div class="control-cell">L</div>
+                        <div class="control-cell">;</div>
+                        <div class="control-cell">,</div>
+                        <div class="control-cell">.</div>
+                        <div class="control-cell">/</div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 

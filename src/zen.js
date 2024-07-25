@@ -50,6 +50,7 @@ function checkZenWinner() {
         const [a, b, c] = combination;
         if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
             highlightZenWinningCombination(combination);
+            isGameActive = false;
             return true;
         }
     }

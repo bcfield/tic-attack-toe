@@ -48,10 +48,6 @@ button {
   &.fullwidth {
     width: 100%;
   }
-  &.large {
-    padding: 10px 25px;
-    font-size: 2em;
-  }
 }
 
 button:disabled {
