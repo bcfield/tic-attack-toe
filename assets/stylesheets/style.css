@@ -157,6 +157,13 @@ header {
     width: calc((29vw + 3rem) / 3 * 2);
   }
 }
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .countdown {
   position: fixed;
   bottom: 10vh;
@@ -248,7 +255,8 @@ header {
   background-color: #fa783e;
 }
 
-#countdown-timer {
+#countdown-timer,
+#round-timer {
   color: #f9d3bc;
   font-size: 8em;
   font-weight: bold;

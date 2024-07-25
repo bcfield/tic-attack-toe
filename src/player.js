@@ -7,8 +7,9 @@ const gameSetup = document.getElementById('game-setup');
 const countdownScreen = document.getElementById('countdown-screen');
 const countdownMessage = document.getElementById('countdown-message');
 const countdownTimer = document.getElementById('countdown-timer');
+const roundTimer = document.getElementById('round-timer');
+const roundCounterMessage = document.getElementById('round-counter');
 const scoreboardScreen = document.getElementById('scoreboard-screen');
-const roundResults = document.getElementById('round-results');
 const nextPlayer = document.getElementById('next-player');
 
 const startJourneyButton = document.getElementById('start-journey');
@@ -28,10 +29,14 @@ const resetGameButton = document.getElementById('reset-game');
 
 const board = document.getElementById('tic-tac-toe-board');
 const turnIndicator = document.getElementById('turn-indicator');
+const player1Info = document.getElementById('player1-info');
+const player2Info = document.getElementById('player2-info');
 const player1ProgressBar = document.getElementById('player1-progress-bar');
 const player2ProgressBar = document.getElementById('player2-progress-bar');
 const player1NameDisplay = document.getElementById('player1-name-display');
 const player2NameDisplay = document.getElementById('player2-name-display');
+const player1ScoreDisplay = document.getElementById('player1-score-display');
+const player2ScoreDisplay = document.getElementById('player2-score-display');
 
 
 let players = [
@@ -158,46 +163,6 @@ function proceedToNextSetup(playerId, nextSetup) {
     }
 }
 
-function fadeIn(element, callback) {
-    element.style.opacity = 0;
-    element.style.display = 'block';
-
-    let last = +new Date();
-    const tick = function() {
-        element.style.opacity = +element.style.opacity + (new Date() - last) / 400;
-        last = +new Date();
-
-        if (+element.style.opacity < 1) {
-            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
-        } else if (callback) {
-            callback();
-        }
-    };
-
-    tick();
-}
-
-function fadeOut(element, callback) {
-    element.style.opacity = 1;
-
-    let last = +new Date();
-    const tick = function() {
-        element.style.opacity = +element.style.opacity - (new Date() - last) / 400;
-        last = +new Date();
-
-        if (+element.style.opacity > 0) {
-            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
-        } else {
-            element.style.display = 'none';
-            if (callback) {
-                callback();
-            }
-        }
-    };
-
-    tick();
-}
-
 function disableSelectedColor(color) {
     document.querySelectorAll('#player2-colors .color-circle').forEach(circle => {
         if (circle.dataset.color === color) {
@@ -250,70 +215,3 @@ function showCountdown() {
     }, 1000);
 }
 
-function showScoreboard() {
-    fadeOut(gameSetup, () => {
-        updateScoreboard();
-        fadeIn(scoreboardScreen);
-    });
-}
-
-function updateScoreboard() {
-    let results = `Round ${roundCounter} Results:\n`;
-    results += `${players[0].name}: ${players[0].score} points\n`;
-    results += `${players[1].name}: ${players[1].score} points\n`;
-
-    roundResults.textContent = results;
-    nextPlayer.textContent = `${players[currentPlayerIndex].name} (${players[currentPlayerIndex].symbol}) will go first next round!`;
-
-    let countdown = 3;
-    countdownTimer.textContent = countdown;
-
-    const countdownInterval = setInterval(() => {
-        countdown -= 1;
-        if (countdown > 0) {
-            countdownTimer.textContent = countdown;
-        } else {
-            clearInterval(countdownInterval);
-            fadeOut(scoreboardScreen, () => {
-                fadeIn(gameSetup);
-                startBattleRound();
-            });
-        }
-    }, 1000);
-}
-
-function enterFullscreen() {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-        elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
-    }
-    fullscreenIcon.classList.add('hidden');
-    fullscreenExitIcon.classList.remove('hidden');
-}
-
-function exitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { // Firefox
-        document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE/Edge
-        document.msExitFullscreen();
-    }
-    fullscreenIcon.classList.remove('hidden');
-    fullscreenExitIcon.classList.add('hidden');
-}
-
-fullscreenIcon.addEventListener('click', enterFullscreen);
-fullscreenExitIcon.addEventListener('click', exitFullscreen);
-
-homeIcon.addEventListener('click', () => {
-    location.reload();
-});

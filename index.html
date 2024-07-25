@@ -177,26 +177,42 @@
     <div id="countdown-screen" class="countdown hidden">
         <div class="py-4 px-5">
             <div class="block">
-                <h5 class="text-orange">GAME STARTS IN</h5>
+                <h5 class="text-orange">MATCH STARTS IN</h5>
                 <p id="countdown-timer"></p>
                 <h5 id="countdown-message" class="text-orange text-uppercase"></h5>
             </div>
         </div>
     </div>
 
-    <div id="scoreboard-screen" class="setup hidden">
-        <h2>Round Results</h2>
-        <p id="round-results"></p>
-        <p id="next-player"></p>
-        <p id="countdown-timer" class="text-light"></p>
+    <div id="scoreboard-screen" class="countdown hidden">
+        <div class="py-4 px-5">
+            <div class="block">
+                <h5 id="round-counter" class="text-orange text-uppercase"></h5>
+                <p id="round-timer"></p>
+                <h5 id="next-player" class="text-orange text-uppercase"></h5>
+            </div>
+        </div>
     </div>
 
     <div id="game-setup" class="hidden">
         <div class="block">
-            <h3 id="player1-name-display"></h3>
-            <div id="player1-progress-bar" class="progress-bar mb-4"></div>
-            <h3 id="player2-name-display"></h3>
-            <div id="player2-progress-bar" class="progress-bar"></div>
+
+            <div id="player1-info">
+                <div class="player-info">
+                    <h3 id="player1-name-display" class="text-left"></h3>
+                    <h3 id="player1-score-display" class="text-right">0</h3>
+                </div>
+                <div id="player1-progress-bar" class="progress-bar mb-4"></div>
+            </div>
+
+            <div id="player2-info">
+                <div class="player-info">
+                    <h3 id="player2-name-display" class="text-left"></h3>
+                    <h3 id="player2-score-display" class="text-right">0</h3>
+                </div>
+                <div id="player2-progress-bar" class="progress-bar"></div>
+            </div>
+
         </div>
         <div class="block">
             <h2 id="turn-indicator"></h2>
@@ -206,10 +222,11 @@
         </div>
         <button id="reset-game" class="fullwidth">restart game</button>
     </div>
-    
+
     <script src="src/player.js"></script>
     <script src="src/zen.js"></script>
     <script src="src/battle.js"></script>
+    <script src="src/utilities.js"></script>
 
 </body>
 </html>

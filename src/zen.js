@@ -3,6 +3,7 @@ resetGameButton.addEventListener('click', () => {
 });
 
 function createZenBoard() {
+    console.log('zen board');
     board.innerHTML = '';
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     gameBoard.forEach((cell, index) => {
@@ -14,7 +15,8 @@ function createZenBoard() {
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
     player1ProgressBar.classList.add('hidden');
     player2ProgressBar.classList.add('hidden');
-
+    player1ScoreDisplay.classList.add('hidden');
+    player2ScoreDisplay.classList.add('hidden');
 }
 
 function handleZenClick(index) {
@@ -92,6 +94,3 @@ function resetZenGame() {
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
     isGameActive = true;
 }
-
-// Initialize the board
-createZenBoard();
