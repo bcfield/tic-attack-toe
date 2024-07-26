@@ -9,10 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="../assets/stylesheets/reset.css">
-    <link rel="stylesheet" href="../assets/stylesheets/style.css">
+    <link rel="stylesheet" href="../assets/stylesheets/scaffold.css">
+    <link rel="stylesheet" href="../assets/stylesheets/screens.css">
+    <link rel="stylesheet" href="../assets/stylesheets/forms.css">
     <link rel="stylesheet" href="../assets/stylesheets/spacing.css">
     <link rel="stylesheet" href="../assets/stylesheets/typography.css">
-    <link rel="stylesheet" href="../assets/stylesheets/forms.css">
+    <link rel="stylesheet" href="../assets/stylesheets/utilities.css">
 </head>
 <body>
 
@@ -20,27 +22,24 @@
         <h1>TIC ATTACK TOE</h1>
     </header>
 
-    <div id="control-icons" class="hidden">
-        <span id="home-icon" class="material-symbols-outlined">replay</span>
-        <span id="fullscreen-icon" class="material-symbols-outlined">fullscreen</span>
-        <span id="fullscreen-exit-icon" class="material-symbols-outlined hidden">fullscreen_exit</span>
+    <div id="icons" class="hidden">
+        <span id="icon-home" class="material-symbols-outlined">replay</span>
+        <span id="icon-fullscreen" class="material-symbols-outlined">fullscreen</span>
+        <span id="icon-fullscreen-exit" class="material-symbols-outlined hidden">fullscreen_exit</span>
     </div>
 
-    <div id="welcome-screen" class="fade-in">
+    <div id="screen-welcome" class="fade-in">
         <div class="block text-light">
-            <p>
-                "...a young king was appointed well before his time.
-                His predeessor fell gloriously in battle to tip the scales in favour of his people - but the war was far from over..."
-            </p>
+            <p>"...a young king was appointed well before his time. His predecessor fell gloriously in battle to tip the scales in favour of his people - but the war was far from over..."</p>
         </div>
         <div class="block text-orange">
             <h5 id="history-icon" class="mb-5" onclick="window.location.href='history.html'">read more about the lore and legend of the game</h5>
         </div>
-        <button id="start-journey">begin</button>
+        <button id="button-begin">begin</button>
     </div>
 
-    <div id="player1-setup" class="setup hidden">
-        <div class="setup-header">
+    <div id="screen-player1" class="screen hidden fade-in">
+        <div class="screen-header">
             <h2>attention player one</h2>
         </div>
         <div class="py-4 px-5">
@@ -49,7 +48,7 @@
                 <p class="text-cherry text-bold">Please enter your name and select a colour below to continue.</p>
             </div>
             <div class="block">
-                <input type="text" id="player1-name" class="fullwidth" placeholder="Enter your name..." required>
+                <input type="text" id="player1-name-input" class="fullwidth" placeholder="Enter your name..." required>
             </div>
             <div class="block mb-4">
                 <div id="player1-colors" class="color-options">
@@ -62,14 +61,14 @@
             </div>
         </div>
         <div class="block">
-            <button id="player1-next" class="fullwidth" disabled>
-               <span class="button-text">continue</span>
+            <button id="button-next-player1" class="fullwidth" disabled>
+                <span class="button-text">continue</span>
             </button>
         </div>
     </div>
 
-    <div id="player2-setup" class="setup hidden">
-        <div class="setup-header">
+    <div id="screen-player2" class="screen hidden fade-in">
+        <div class="screen-header">
             <h2>attention player two</h2>
         </div>
         <div class="py-4 px-5">
@@ -78,7 +77,7 @@
                 <p class="text-cherry text-bold">Please enter your name and select a colour below to continue.</p>
             </div>
             <div class="block">
-                <input type="text" id="player2-name" class="fullwidth" placeholder="Enter your name..." required>
+                <input type="text" id="player2-name-input" class="fullwidth" placeholder="Enter your name..." required>
             </div>
             <div class="block mb-4">
                 <div id="player2-colors" class="color-options">
@@ -91,54 +90,47 @@
             </div>
         </div>
         <div class="block">
-            <button id="player2-next" class="fullwidth" disabled>
-               <span class="button-text">continue</span>
+            <button id="button-next-player2" class="fullwidth" disabled>
+                <span class="button-text">continue</span>
             </button>
         </div>
     </div>
 
-    <div id="game-mode-setup" class="hidden">
+    <div id="screen-game-mode" class="hidden fade-in">
         <div class="game-modes">
-
-            <div id="start-game" class="setup small">
-                <div class="setup-header mb-6">
+            <div id="button-start-zen" class="screen small">
+                <div class="screen-header mb-6">
                     <h2>zen mode</h2>
                 </div>
                 <div class="py-4 px-5">
                     <div class="block">
-                        <span id="home-icon" class="material-symbols-outlined large text-orange">favorite</span>
+                        <span class="material-symbols-outlined large text-orange">favorite</span>
                     </div>
                     <div class="block text-left">
-                        <p class="mb-4">
-                            Refine your skills in the classic version of the game without any timers or fear of defeat.
-                        </p>
+                        <p class="mb-4">Refine your skills in the classic version of the game without any timers or fear of defeat.</p>
                     </div>
-                </div>   
+                </div>
                 <button class="fullwidth">practice</button>
             </div>
-
-            <div id="start-game-battle" class="setup small">
-                <div class="setup-header mb-6">
+            <div id="button-start-battle" class="screen small">
+                <div class="screen-header mb-6">
                     <h2>battle mode</h2>
                 </div>
                 <div class="py-4 px-5">
                     <div class="block">
-                        <span id="home-icon" class="material-symbols-outlined large text-apple">swords</span>
+                        <span class="material-symbols-outlined large text-apple">swords</span>
                     </div>
                     <div class="block text-left">
-                        <p class="mb-4">
-                            Battle a worthy opponent in a timed match of five rounds where only one can claim victory.
-                        </p>
+                        <p class="mb-4">Battle a worthy opponent in a timed match of five rounds where only one can claim victory.</p>
                     </div>
-                </div>    
+                </div>
                 <button class="fullwidth">fight</button>
             </div>
-
-            <div id="game-controls-left">
+            <div class="controls left">
                 <h5 class="text-orange">KEYBOARD CONTROL</h5>
                 <h5 class="text-peach mb-4">PLAYER ONE</h5>
                 <div class="game-modes">
-                    <div class="control-layout">
+                    <div class="control-grid">
                         <div class="control-cell">Q</div>
                         <div class="control-cell">W</div>
                         <div class="control-cell">E</div>
@@ -151,12 +143,11 @@
                     </div>
                 </div>
             </div>
-
-            <div id="game-controls-right">
+            <div class="controls right">
                 <h5 class="text-orange">KEYBOARD CONTROL</h5>
                 <h5 class="text-peach mb-4">PLAYER TWO</h5>
                 <div class="game-modes">
-                    <div class="control-layout">
+                    <div class="control-grid">
                         <div class="control-cell">I</div>
                         <div class="control-cell">O</div>
                         <div class="control-cell">P</div>
@@ -169,64 +160,49 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 
-    <div id="countdown-screen" class="countdown hidden">
+    <div id="screen-countdown" class="countdown hidden fade-in">
         <div class="py-4 px-5">
             <div class="block">
-                <h5 class="text-orange">MATCH STARTS IN</h5>
+                <h5 id="countdown-message" class="text-orange"></h5>
                 <p id="countdown-timer"></p>
-                <h5 id="countdown-message" class="text-orange text-uppercase"></h5>
+                <h5 id="countdown-player" class="text-orange text-uppercase"></h5>
             </div>
         </div>
     </div>
 
-    <div id="scoreboard-screen" class="countdown hidden">
-        <div class="py-4 px-5">
-            <div class="block">
-                <h5 id="round-counter" class="text-orange text-uppercase"></h5>
-                <p id="round-timer"></p>
-                <h5 id="next-player" class="text-orange text-uppercase"></h5>
-            </div>
-        </div>
-    </div>
-
-    <div id="game-setup" class="hidden">
+    <div id="screen-game" class="hidden fade-in">
         <div class="block">
-
             <div id="player1-info">
                 <div class="player-info">
-                    <h3 id="player1-name-display" class="text-left"></h3>
-                    <h3 id="player1-score-display" class="text-right">0</h3>
+                    <h3 id="player1-name" class="text-left"></h3>
+                    <h3 id="player1-score" class="text-right">0</h3>
                 </div>
-                <div id="player1-progress-bar" class="progress-bar mb-4"></div>
+                <div id="player1-progress" class="progress-bar mb-4"></div>
             </div>
-
             <div id="player2-info">
                 <div class="player-info">
-                    <h3 id="player2-name-display" class="text-left"></h3>
-                    <h3 id="player2-score-display" class="text-right">0</h3>
+                    <h3 id="player2-name" class="text-left"></h3>
+                    <h3 id="player2-score" class="text-right">0</h3>
                 </div>
-                <div id="player2-progress-bar" class="progress-bar"></div>
+                <div id="player2-progress" class="progress-bar"></div>
             </div>
-
         </div>
         <div class="block">
             <h2 id="turn-indicator"></h2>
         </div>
         <div class="block mb-6">
-            <div id="tic-tac-toe-board"></div>
+            <div id="board"></div>
         </div>
-        <button id="reset-game" class="fullwidth">restart game</button>
+        <button id="button-reset-zen" class="fullwidth">restart game</button>
     </div>
 
-    <script src="src/player.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/players.js"></script>
     <script src="src/zen.js"></script>
     <script src="src/battle.js"></script>
-    <script src="src/utilities.js"></script>
-
+    <script src="src/navigation.js"></script>
 </body>
 </html>

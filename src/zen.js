@@ -1,33 +1,17 @@
-resetGameButton.addEventListener('click', () => {
-    resetZenGame();
+buttonResetZen.addEventListener('click', () => {
+    resetZen();
 });
 
-function createZenBoard() {
-    console.log('zen board');
-    board.innerHTML = '';
-    gameBoard = ['', '', '', '', '', '', '', '', ''];
-    gameBoard.forEach((cell, index) => {
-        const cellElement = document.createElement('div');
-        cellElement.classList.add('cell');
-        cellElement.addEventListener('click', () => handleZenClick(index));
-        board.appendChild(cellElement);
-    });
-    turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
-    player1ProgressBar.classList.add('hidden');
-    player2ProgressBar.classList.add('hidden');
-    player1ScoreDisplay.classList.add('hidden');
-    player2ScoreDisplay.classList.add('hidden');
-}
-
-function handleZenClick(index) {
-    if (gameBoard[index] !== '') return; // Prevent overwriting moves
+function zenClick(index) {
+    if (gameBoard[index] !== '') return;
+    if (!isGameActive) return;
 
     gameBoard[index] = players[currentPlayerIndex].symbol;
     const cellElement = board.children[index];
     cellElement.textContent = players[currentPlayerIndex].symbol;
     cellElement.style.color = players[currentPlayerIndex].color;
 
-    if (checkZenWinner()) {
+    if (checkWinner()) {
         displayZenResult(`${players[currentPlayerIndex].name} is victorious!`, true);
         return;
     }
@@ -41,31 +25,12 @@ function handleZenClick(index) {
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
 }
 
-function checkZenWinner() {
-    const winningCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-
-    for (const combination of winningCombinations) {
-        const [a, b, c] = combination;
-        if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-            highlightZenWinningCombination(combination);
-            isGameActive = false;
-            return true;
-        }
-    }
-
-    return false;
-}
-
 function displayZenResult(message, isWin) {
     turnIndicator.textContent = message;
 
     if (isWin) {
         Array.from(board.children).forEach(cell => {
-            if (!cell.classList.contains('winning-cell')) {
+            if (!cell.classList.contains('board-cell-win')) {
                 cell.style.opacity = '0.5';
             }
         });
@@ -76,19 +41,13 @@ function displayZenResult(message, isWin) {
     }
 }
 
-function highlightZenWinningCombination(combination) {
-    combination.forEach(index => {
-        board.children[index].classList.add('winning-cell');
-    });
-}
-
-function resetZenGame() {
+function resetZen() {
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     Array.from(board.children).forEach(cell => {
         cell.textContent = '';
         cell.style.color = '';
         cell.style.opacity = '1';
-        cell.classList.remove('winning-cell');
+        cell.classList.remove('board-cell-win');
     });
     currentPlayerIndex = Math.floor(Math.random() * 2);
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;

@@ -1,5 +1,3 @@
-/* https://www.joshwcomeau.com/css/custom-css-reset/ */
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -59,4 +57,11 @@ select:active,
 button:active {
     outline: none;
     box-shadow: none;
+}
+
+input:-internal-autofill-selected,
+input:-webkit-autofill:focus {
+  background-color: #f6e3d5 !important;
+  -webkit-box-shadow:0 0 0 50px #f6e3d5 inset;
+  -webkit-text-fill-color: #31102f;
 }

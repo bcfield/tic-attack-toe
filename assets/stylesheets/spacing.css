@@ -2,10 +2,6 @@
   margin-bottom: 1.5em;
 }
 
-.mt-6 {
-  margin-top: 3rem;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -21,11 +17,6 @@
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
 }
 
 .px-5 {

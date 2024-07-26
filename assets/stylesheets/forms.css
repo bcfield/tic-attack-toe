@@ -15,17 +15,6 @@ input {
   }
 }
 
-::placeholder {
-  opacity: 1;
-  color: #d5b5a2;
-  font-weight: 500;
-}
-
-::-ms-input-placeholder {
-  color: #ffffff;
-  font-weight: 500;
-}
-
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
@@ -71,6 +60,21 @@ button:disabled .button-text {
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.3s;
+  &.bg-plum {
+    background-color: #31102f;
+  }
+  &.bg-cherry {
+    background-color: #5b0134;
+  }
+  &.bg-apple {
+    background-color: #84002f;
+  }
+  &.bg-orange {
+    background-color: #fb5231;
+  }
+  &.bg-peach {
+    background-color: #fa783e;
+  }  
 }
 
 .color-circle.selected {
@@ -79,4 +83,15 @@ button:disabled .button-text {
   
 .color-circle.disabled {
   opacity: 0.15;
-}  
+}
+
+::placeholder {
+  opacity: 1;
+  color: #d5b5a2;
+  font-weight: 500;
+}
+
+::-ms-input-placeholder {
+  color: #ffffff;
+  font-weight: 500;
+}

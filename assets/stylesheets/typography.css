@@ -9,7 +9,7 @@ p {
 }
 
 .text-bold {
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .text-uppercase {
@@ -22,23 +22,6 @@ p {
 
 .text-center {
   text-align: center;
-}
-
-
-.text-black {
-  color: #000000;
-}
-
-.text-white {
-  color: #ffffff;
-}
-
-.text-grey {
-  color: #808080;
-}
-
-.text-plum {
-  color: #31102f;
 }
 
 .text-cherry {
