@@ -6,7 +6,7 @@ let roundCounter = 0;
 let playerTimers;
 let roundStarted = false;
 
-function startBattleRound() {
+function startRound() {
     if (roundStarted) return;
 
     roundStarted = true;
@@ -21,21 +21,21 @@ function startBattleRound() {
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
 
-    resetPlayerDisplay();
-    updatePlayerTurnDisplay();
+    resetPlayers();
+    updateTurn();
     createBoard();
-    startBattlePlayerTimers();
+    startTimers();
     isGameActive = true;
 }
 
-function startBattlePlayerTimers() {
+function startTimers() {
     let player1Time = player1TotalTime;
     let player2Time = player2TotalTime;
 
     player1Progress.style.width = '100%';
     player2Progress.style.width = '100%';
 
-    clearInterval(playerTimers); // Clear any existing timer
+    clearInterval(playerTimers);
 
     playerTimers = setInterval(() => {
         if (currentPlayerIndex === 0) {
@@ -43,21 +43,21 @@ function startBattlePlayerTimers() {
             player1Progress.style.width = `${(player1Time / player1TotalTime) * 100}%`;
             if (player1Time <= 0) {
                 clearInterval(playerTimers);
-                handleBattleTimeout(1); // Player 2 wins
+                battleTimeout(1);
             }
         } else {
             player2Time -= 0.1;
             player2Progress.style.width = `${(player2Time / player2TotalTime) * 100}%`;
             if (player2Time <= 0) {
                 clearInterval(playerTimers);
-                handleBattleTimeout(0); // Player 1 wins
+                battleTimeout(0);
             }
         }
-        updatePlayerTurnDisplay();
+        updateTurn();
     }, 100);
 }
 
-function updatePlayerTurnDisplay() {
+function updateTurn() {
     if (currentPlayerIndex === 0) {
         player1Info.style.opacity = '1';
         player2Info.style.opacity = '0.5';
@@ -67,10 +67,10 @@ function updatePlayerTurnDisplay() {
     }
 }
 
-function animateScoreIncrement(playerScoreDisplay, startScore, endScore) {
-    const duration = 2000; // Duration in milliseconds
-    const frameRate = 60; // Frames per second
-    const increment = (endScore - startScore) / (duration / frameRate); // Increment per frame
+function animateScore(playerScoreDisplay, startScore, endScore) {
+    const duration = 2000;
+    const frameRate = 60;
+    const increment = (endScore - startScore) / (duration / frameRate);
     let currentScore = startScore;
     
     const interval = setInterval(() => {
@@ -80,7 +80,7 @@ function animateScoreIncrement(playerScoreDisplay, startScore, endScore) {
             clearInterval(interval);
         }
         playerScoreDisplay.textContent = Math.round(currentScore);
-    }, 1000 / frameRate); // Interval per frame
+    }, 1000 / frameRate);
 }
 
 function showScoreboard() {
@@ -91,7 +91,7 @@ function showScoreboard() {
         updateScoreboard();
         screenCountdown.classList.remove('hidden');
         screenCountdown.classList.add('fade-in');
-    }, 500); // Adjust the delay to match the CSS animation duration
+    }, 500);
 }
 
 function updateScoreboard() {
@@ -118,21 +118,21 @@ function updateScoreboard() {
                 screenCountdown.classList.remove('fade-out');
                 screenGame.classList.remove('hidden');
                 screenGame.classList.add('fade-in');
-                roundStarted = false; // Reset the flag before starting the next round
-                startBattleRound();
-            }, 500); // Adjust the delay to match the CSS animation duration
+                roundStarted = false;
+                startRound();
+            }, 500);
         }
     }, 1000);
 }
 
-function updatePlayerScores(winnerIndex) {
+function updateScores(winnerIndex) {
     if (winnerIndex !== null) {
-        const winnerScoreDisplay = winnerIndex === 0 ? player1Score : player2Score;
+        const winnerScore = winnerIndex === 0 ? player1Score : player2Score;
         
         const startScore = players[winnerIndex].score - 500;
         const endScore = players[winnerIndex].score;
         
-        animateScoreIncrement(winnerScoreDisplay, startScore, endScore);
+        animateScore(winnerScore, startScore, endScore);
     } else {
         const player1ProgressScore = Math.round(parseFloat(player1Progress.style.width) * 10);
         const player2ProgressScore = Math.round(parseFloat(player2Progress.style.width) * 10);
@@ -146,19 +146,19 @@ function updatePlayerScores(winnerIndex) {
         const startScore2 = players[1].score - player2ProgressScore;
         const endScore2 = players[1].score;
         
-        animateScoreIncrement(player1Score, startScore1, endScore1);
-        animateScoreIncrement(player2Score, startScore2, endScore2);
+        animateScore(player1Score, startScore1, endScore1);
+        animateScore(player2Score, startScore2, endScore2);
     }
 }
 
-function handleBattleTimeout(winnerIndex) {
-    clearInterval(playerTimers); // Stop the timers
+function battleTimeout(winnerIndex) {
+    clearInterval(playerTimers);
     displayBattleResult(`${players[winnerIndex].name} wins by timeout!`, winnerIndex);
     isGameActive = false;
     if (roundCounter < maxRounds) {
-        setTimeout(showScoreboard, 3000); // Show scoreboard after result
+        setTimeout(showScoreboard, 3000);
     } else {
-        setTimeout(displayFinalResults, 3000); // Show final results after last round
+        setTimeout(displayFinalResults, 3000);
     }
 }
 
@@ -172,7 +172,7 @@ function battleClick(index) {
     cellElement.style.color = players[currentPlayerIndex].color;
 
     if (checkWinner()) {
-        clearInterval(playerTimers); // Stop the timers
+        clearInterval(playerTimers);
         displayBattleResult(`${players[currentPlayerIndex].name} is victorious!`, currentPlayerIndex);
         isGameActive = false;
         setTimeout(() => {
@@ -181,26 +181,25 @@ function battleClick(index) {
             } else {
                 displayFinalResults();
             }
-        }, 3000); // Show scoreboard or final results after result
+        }, 3000);
         return;
     }
 
     if (!gameBoard.includes('')) {
-        clearInterval(playerTimers); // Stop the timers
+        clearInterval(playerTimers);
         displayBattleResult('It\'s a draw!', null);
-        // Remove the redundant score increment from here
         setTimeout(() => {
             if (roundCounter < maxRounds) {
                 showScoreboard();
             } else {
                 displayFinalResults();
             }
-        }, 3000); // Show scoreboard or final results after result
+        }, 3000);
         return;
     }
 
     currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
-    updatePlayerTurnDisplay();
+    updateTurn();
 }
 
 function displayBattleResult(message, winnerIndex) {
@@ -228,27 +227,21 @@ function displayBattleResult(message, winnerIndex) {
         cell.style.opacity = '0.5';
     });
 
-    updatePlayerScores(winnerIndex);
+    updateScores(winnerIndex);
 }
 
-function resetPlayerDisplay() {
+function resetPlayers() {
     player1Name.textContent = players[0].name;
-    player2Name.textContent = players[1].name;
-    player1Info.style.opacity = '1';
-    player2Info.style.opacity = '1';
-
-    // Display player names
-    player1Name.textContent = players[0].name;
-    player2Name.textContent = players[1].name;
-    
-    // Set progress bar colors based on player colors
-    player1Progress.style.backgroundColor = players[0].color;
-    player2Progress.style.backgroundColor = players[1].color;
     player1Name.style.color = players[0].color;
-    player2Name.style.color = players[1].color;
+    player1Info.style.opacity = '1';
+    player1Progress.style.backgroundColor = players[0].color;
     player1Score.style.color = players[0].color;
-    player2Score.style.color = players[1].color;
 
+    player2Name.textContent = players[1].name;
+    player2Name.style.color = players[1].color;
+    player2Info.style.opacity = '1';
+    player2Progress.style.backgroundColor = players[1].color;
+    player2Score.style.color = players[1].color;
 }
 
 function displayFinalResults() {

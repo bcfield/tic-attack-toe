@@ -83,7 +83,7 @@ function showCountdown() {
                 screenGame.classList.remove('hidden');
                 screenGame.classList.add('fade-in');
                 if (gameMode === 'battle') {
-                    startBattleRound();
+                    startRound();
                 } else {
                     createBoard();
                     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;

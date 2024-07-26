@@ -22,7 +22,7 @@ document.querySelectorAll('.color-circle').forEach(circle => {
         const nextButton = document.getElementById(`button-next-${setupId}`);
 
         if (nameInput) {
-            proceedToNextSetup(setupId, setupId === 'player1' ? screenPlayer2 : screenGameMode);
+            nextScreen(setupId, setupId === 'player1' ? screenPlayer2 : screenGameMode);
         } else {
             nextButton.disabled = true;
         }
@@ -33,7 +33,7 @@ document.querySelectorAll('.color-circle').forEach(circle => {
     });
 });
 
-function proceedToNextSetup(playerId, nextSetup) {
+function nextScreen(playerId, nextSetup) {
     const playerName = document.getElementById(`${playerId}-name-input`).value;
     const selectedColor = document.querySelector(`#${playerId}-colors .selected`);
 

@@ -28,11 +28,11 @@ buttonBegin.addEventListener('click', () => {
 });
 
 buttonNextPlayer1.addEventListener('click', () => {
-    proceedToNextSetup('player1', screenPlayer2);
+    nextScreen('player1', screenPlayer2);
 });
 
 buttonNextPlayer2.addEventListener('click', () => {
-    proceedToNextSetup('player2', screenGameMode);
+    nextScreen('player2', screenGameMode);
 });
 
 buttonStartZen.addEventListener('click', () => {
