@@ -1,14 +1,29 @@
 #game-title {
     margin-top: 15vh;
     h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 3em;
-      letter-spacing: 2px;
-    }
+        position: relative;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 3rem;
+        letter-spacing: 2px;
+        line-height: 1;
+        background-color: #f9d3bc;
+        z-index: 1;
+    };
+    .material-symbols-outlined {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 8rem;
+        z-index: -1;
+        &.light {
+            font-variation-settings: 'wght' 300;
+        }
+    };
 }  
 
 #game-title.slide-up {
-    margin-top: 5vh;
+    margin-top: 7vh;
     transition: margin-top 0.5s;
 }
 
@@ -19,9 +34,20 @@
 
 #icons {
     position: absolute;
-    top: 3.65em;
+    top: 4.65em;
     right: 3em;
     z-index: 2;
+}
+
+#history-icon {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    .material-symbols-outlined {
+        font-size: 1.75rem;
+    }
 }
 
 .screen {
@@ -55,11 +81,9 @@
 }
 
 #screen-history {
-    position: fixed;
-    width: 100%;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    font-size: 0.95rem;
+    width: 90%;
+    font-size: 0.9rem;
+    line-height: 1.75;
     letter-spacing: 2px;
     text-align: justify;
     h1 {
@@ -69,6 +93,17 @@
     h4 {
         font-size: 1.2em;
     }
+}
+
+#screen-game {
+    margin-top: 6rem;
+}
+
+#player1-info,
+#player2-info {
+    background-color: rgba(248,226,213,0.65);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .controls {
@@ -129,4 +164,12 @@
     opacity: 1 !important;
 }
   
-  
+#turn-indicator {
+    background-color: rgba(248,226,213,0.65);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 2;
+    text-transform: uppercase;
+}  

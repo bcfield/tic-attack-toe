@@ -3,15 +3,24 @@
 }
 
 .mb-4 {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
 }
 
 .mb-5 {
-  margin-bottom: 2rem;
+  margin-bottom: 2rem !important;
 }
 
 .mb-6 {
-  margin-bottom: 3rem;
+  margin-bottom: 3rem !important;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .py-4 {

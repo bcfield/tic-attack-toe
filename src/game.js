@@ -110,6 +110,7 @@ function createBoard() {
 
     if (gameMode === 'zen') {
         turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
+        turnIndicator.style.color = players[currentPlayerIndex].color;
         player1Progress.classList.add('hidden');
         player2Progress.classList.add('hidden');
         player1Score.classList.add('hidden');

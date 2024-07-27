@@ -51,5 +51,8 @@ p {
   margin-right: 0.5rem;
   &.large {
     font-size: 8rem;
-  }
+  };
+  &.light {
+    font-variation-settings: 'wght' 300;
+  };
 }

@@ -173,7 +173,7 @@ function battleClick(index) {
 
     if (checkWinner()) {
         clearInterval(playerTimers);
-        displayBattleResult(`${players[currentPlayerIndex].name} is victorious!`, currentPlayerIndex);
+        displayBattleResult(`${players[currentPlayerIndex].name} wins!`, currentPlayerIndex);
         isGameActive = false;
         setTimeout(() => {
             if (roundCounter < maxRounds) {
@@ -249,14 +249,14 @@ function displayFinalResults() {
     const player2FinalScore = players[1].score;
 
     if (player1FinalScore > player2FinalScore) {
-        player1Name.textContent = `${players[0].name} is victorious!`;
-        player2Name.textContent = `${players[1].name} is defeated!`;
+        player1Name.textContent = `${players[0].name} wins!`;
+        player2Name.textContent = `${players[1].name}`;
     } else if (player2FinalScore > player1FinalScore) {
-        player2Name.textContent = `${players[1].name} is victorious!`;
-        player1Name.textContent = `${players[0].name} is defeated!`;
+        player2Name.textContent = `${players[1].name} wins!`;
+        player1Name.textContent = `${players[0].name}`;
     } else {
-        player1Name.textContent = `${players[0].name} has drawn the match!`;
-        player2Name.textContent = `${players[1].name} has drawn the match!`;
+        player1Name.textContent = `${players[0].name} has drawn!`;
+        player2Name.textContent = `${players[1].name} has drawn!`;
     }
 
     player1Info.style.opacity = '1';

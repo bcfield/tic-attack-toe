@@ -12,7 +12,7 @@ function zenClick(index) {
     cellElement.style.color = players[currentPlayerIndex].color;
 
     if (checkWinner()) {
-        displayZenResult(`${players[currentPlayerIndex].name} is victorious!`, true);
+        displayZenResult(`${players[currentPlayerIndex].name} wins!`, true);
         return;
     }
 
@@ -23,6 +23,7 @@ function zenClick(index) {
 
     currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
+    turnIndicator.style.color = players[currentPlayerIndex].color;
 }
 
 function displayZenResult(message, isWin) {
@@ -51,5 +52,6 @@ function resetZen() {
     });
     currentPlayerIndex = Math.floor(Math.random() * 2);
     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
+    turnIndicator.style.color = players[currentPlayerIndex].color;
     isGameActive = true;
 }
