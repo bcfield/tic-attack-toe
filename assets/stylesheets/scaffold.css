@@ -27,7 +27,7 @@ body {
   padding: 5vh;
   color: #31102f;
   font-family: 'Rajdhani', sans-serif;
-  background: url('../images/background.jpg') no-repeat top center fixed;
+  background: url('assets/images/background.jpg') no-repeat top center fixed;
   background-size: cover;
   transition: background-position 0.5s;
   &.top {
