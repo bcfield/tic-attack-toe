@@ -7,6 +7,7 @@ const countdownPlayer = document.getElementById('countdown-player');
 const buttonResetZen = document.getElementById('button-reset-zen');
 
 const board = document.getElementById('board');
+const turnTimer = document.getElementById('turn-timer');
 const turnIndicator = document.getElementById('turn-indicator');
 const player1Info = document.getElementById('player1-info');
 const player2Info = document.getElementById('player2-info');
@@ -109,6 +110,7 @@ function createBoard() {
     });
 
     if (gameMode === 'zen') {
+        turnTimer.classList.add('hidden');
         turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
         turnIndicator.style.color = players[currentPlayerIndex].color;
         player1Progress.classList.add('hidden');
