@@ -1,34 +1,112 @@
-const screenGame = document.getElementById('screen-game');
-const screenCountdown = document.getElementById('screen-countdown');
-const countdownMessage = document.getElementById('countdown-message');
-const countdownTimer = document.getElementById('countdown-timer');
-const countdownPlayer = document.getElementById('countdown-player');
+// game.js
 
-const buttonResetZen = document.getElementById('button-reset-zen');
+// Define a global board variable
+export let globalBoard = document.getElementById('board');
 
-const board = document.getElementById('board');
-const turnTimer = document.getElementById('turn-timer');
-const turnIndicator = document.getElementById('turn-indicator');
-const player1Info = document.getElementById('player1-info');
-const player2Info = document.getElementById('player2-info');
-const player1Progress = document.getElementById('player1-progress');
-const player2Progress = document.getElementById('player2-progress');
-const player1Name = document.getElementById('player1-name');
-const player2Name = document.getElementById('player2-name');
-const player1Score = document.getElementById('player1-score');
-const player2Score = document.getElementById('player2-score');
+export function setBoardMock(mock) {
+    globalBoard = mock;
+}
 
-let players = [
+export const screenGame = document.getElementById('screen-game');
+export const screenCountdown = document.getElementById('screen-countdown');
+export const countdownMessage = document.getElementById('countdown-message');
+export const countdownTimer = document.getElementById('countdown-timer');
+export const countdownPlayer = document.getElementById('countdown-player');
+
+export const buttonResetZen = document.getElementById('button-reset-zen');
+
+export const turnTimer = document.getElementById('turn-timer');
+export const turnIndicator = document.getElementById('turn-indicator');
+export const player1Info = document.getElementById('player1-info');
+export const player2Info = document.getElementById('player2-info');
+export const player1Progress = document.getElementById('player1-progress');
+export const player2Progress = document.getElementById('player2-progress');
+export const player1Name = document.getElementById('player1-name');
+export const player2Name = document.getElementById('player2-name');
+export const player1Score = document.getElementById('player1-score');
+export const player2Score = document.getElementById('player2-score');
+
+export const screenPlayer2 = document.getElementById('screen-player2');
+export const screenGameMode = document.getElementById('screen-game-mode');
+
+export let players = [
     { name: '', color: '', symbol: 'X', score: 0 },
     { name: '', color: '', symbol: 'O', score: 0 }
 ];
 
-let gameMode = 'zen';
-let isGameActive = false;
+export let gameMode = 'zen';
+export let isGameActive = false;
 
-let currentPlayerIndex = 0;
-let gameBoard = ['', '', '', '', '', '', '', '', ''];
+export let currentPlayerIndex = 0;
+export let gameBoard = ['', '', '', '', '', '', '', '', ''];
 
+export function setGameBoard(board) {
+    gameBoard = board;
+}
+
+export function setCurrentPlayerIndex(index) {
+    currentPlayerIndex = index;
+}
+
+export function setIsGameActive(state) {
+    isGameActive = state;
+}
+
+export function setGameMode(mode) {
+    gameMode = mode;
+}
+
+export function nextScreen(playerId, nextSetup) {
+    const playerName = document.getElementById(`${playerId}-name-input`).value;
+    const selectedColor = document.querySelector(`#${playerId}-colors .selected`);
+
+    if (playerName && selectedColor) {
+        players[playerId === 'player1' ? 0 : 1] = { 
+            name: playerName, 
+            color: selectedColor.dataset.color, 
+            symbol: playerId === 'player1' ? 'X' : 'O',
+            score: 0 
+        };
+        fadeOutElement(document.getElementById(`screen-${playerId}`), () => fadeInElement(nextSetup, () => {
+            if (playerId === 'player1') {
+                document.getElementById('player2-name-input').focus();
+            }
+        }));
+    } else {
+        const nextButton = document.getElementById(`${playerId}-next`);
+        nextButton.disabled = true;
+    }
+}
+
+export function disableSelectedColor(color) {
+    document.querySelectorAll('#player2-colors .color-circle').forEach(circle => {
+        if (circle.dataset.color === color) {
+            circle.classList.add('disabled');
+            circle.style.pointerEvents = 'none';
+        } else {
+            circle.classList.remove('disabled');
+            circle.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+export function fadeOutElement(element, callback) {
+    element.classList.remove('fade-in');
+    element.classList.add('fade-out');
+    setTimeout(() => {
+        element.classList.add('hidden');
+        if (callback) callback();
+    }, 500);
+}
+
+export function fadeInElement(element, callback) {
+    element.classList.remove('fade-out');
+    element.classList.add('fade-in');
+    element.classList.remove('hidden');
+    setTimeout(() => {
+        if (callback) callback();
+    }, 500);
+}
 
 document.addEventListener('keydown', (event) => {
     if (!isGameActive) return;
@@ -48,21 +126,29 @@ document.addEventListener('keydown', (event) => {
     if (currentPlayerIndex === 0 && keyBindingsPlayer1.hasOwnProperty(event.key)) {
         const cellIndex = keyBindingsPlayer1[event.key];
         if (gameMode === 'zen') {
-            zenClick(cellIndex);
+            import('./zen.js').then(module => {
+                module.zenClick(cellIndex);
+            });
         } else if (gameMode === 'battle') {
-            battleClick(cellIndex);
+            import('./battle.js').then(module => {
+                module.battleClick(cellIndex);
+            });
         }
     } else if (currentPlayerIndex === 1 && keyBindingsPlayer2.hasOwnProperty(event.key)) {
         const cellIndex = keyBindingsPlayer2[event.key];
         if (gameMode === 'zen') {
-            zenClick(cellIndex);
+            import('./zen.js').then(module => {
+                module.zenClick(cellIndex);
+            });
         } else if (gameMode === 'battle') {
-            battleClick(cellIndex);
+            import('./battle.js').then(module => {
+                module.battleClick(cellIndex);
+            });
         }
     }
 });
 
-function showCountdown() {
+export function showCountdown() {
     currentPlayerIndex = Math.floor(Math.random() * 2);
     countdownMessage.textContent = `match starts in`;
     countdownPlayer.textContent = `${players[currentPlayerIndex].name} goes first`;
@@ -84,7 +170,9 @@ function showCountdown() {
                 screenGame.classList.remove('hidden');
                 screenGame.classList.add('fade-in');
                 if (gameMode === 'battle') {
-                    startRound();
+                    import('./battle.js').then(module => {
+                        module.startRound();
+                    });
                 } else {
                     createBoard();
                     turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
@@ -95,18 +183,22 @@ function showCountdown() {
     }, 1000);
 }
 
-function createBoard() {
-    board.innerHTML = '';
+export function createBoard() {
+    globalBoard.innerHTML = '';
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     gameBoard.forEach((cell, index) => {
         const cellElement = document.createElement('div');
         cellElement.classList.add('board-cell');
         if (gameMode === 'zen') {
-            cellElement.addEventListener('click', () => zenClick(index));
+            import('./zen.js').then(module => {
+                cellElement.addEventListener('click', () => module.zenClick(index));
+            });
         } else {
-            cellElement.addEventListener('click', () => battleClick(index));
+            import('./battle.js').then(module => {
+                cellElement.addEventListener('click', () => module.battleClick(index));
+            });
         }
-        board.appendChild(cellElement);
+        globalBoard.appendChild(cellElement);
     });
 
     if (gameMode === 'zen') {
@@ -121,7 +213,7 @@ function createBoard() {
         turnIndicator.classList.add('hidden');
     }
 
-    Array.from(board.children).forEach(cell => {
+    Array.from(globalBoard.children).forEach(cell => {
         cell.textContent = '';
         cell.style.color = '';
         cell.style.opacity = '1';
@@ -129,7 +221,7 @@ function createBoard() {
     });
 }
 
-function checkWinner() {
+export function checkWinner() {
     const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -148,6 +240,6 @@ function checkWinner() {
 
 function highlightWinningCombination(combination) {
     combination.forEach(index => {
-        board.children[index].classList.add('board-cell-win');
+        globalBoard.children[index].classList.add('board-cell-win');
     });
 }

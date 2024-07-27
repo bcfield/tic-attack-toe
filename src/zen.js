@@ -1,15 +1,19 @@
-buttonResetZen.addEventListener('click', () => {
-    resetZen();
-});
+import { checkWinner, players, gameBoard, isGameActive, currentPlayerIndex, setGameBoard, setCurrentPlayerIndex, setIsGameActive } from './game.js';
+import { getElementById, addEventListenerToElement, setElementText, setElementStyle } from './utilities.js';
 
-function zenClick(index) {
-    if (gameBoard[index] !== '') return;
-    if (!isGameActive) return;
+const buttonResetZen = getElementById('button-reset-zen');
+const board = getElementById('board');
+const turnIndicator = getElementById('turn-indicator');
+
+addEventListenerToElement(buttonResetZen, 'click', resetZen);
+
+export function zenClick(index) {
+    if (gameBoard[index] !== '' || !isGameActive) return;
 
     gameBoard[index] = players[currentPlayerIndex].symbol;
-    const cellElement = board.children[index];
-    cellElement.textContent = players[currentPlayerIndex].symbol;
-    cellElement.style.color = players[currentPlayerIndex].color;
+    const cellElement = board?.children[index];
+    setElementText(cellElement, players[currentPlayerIndex].symbol);
+    setElementStyle(cellElement, 'color', players[currentPlayerIndex].color);
 
     if (checkWinner()) {
         displayZenResult(`${players[currentPlayerIndex].name} wins!`, true);
@@ -21,37 +25,31 @@ function zenClick(index) {
         return;
     }
 
-    currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
-    turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
-    turnIndicator.style.color = players[currentPlayerIndex].color;
+    setCurrentPlayerIndex(currentPlayerIndex === 0 ? 1 : 0);
+    setElementText(turnIndicator, `${players[currentPlayerIndex].name}'s Turn`);
+    setElementStyle(turnIndicator, 'color', players[currentPlayerIndex].color);
 }
 
 function displayZenResult(message, isWin) {
-    turnIndicator.textContent = message;
+    setElementText(turnIndicator, message);
 
-    if (isWin) {
-        Array.from(board.children).forEach(cell => {
-            if (!cell.classList.contains('board-cell-win')) {
-                cell.style.opacity = '0.5';
-            }
-        });
-    } else {
-        Array.from(board.children).forEach(cell => {
-            cell.style.opacity = '0.5';
-        });
-    }
+    Array.from(board?.children || []).forEach(cell => {
+        if (!cell.classList.contains('board-cell-win')) {
+            setElementStyle(cell, 'opacity', '0.5');
+        }
+    });
 }
 
-function resetZen() {
-    gameBoard = ['', '', '', '', '', '', '', '', ''];
-    Array.from(board.children).forEach(cell => {
-        cell.textContent = '';
-        cell.style.color = '';
-        cell.style.opacity = '1';
+export function resetZen() {
+    setGameBoard(['', '', '', '', '', '', '', '', '']);
+    Array.from(board?.children || []).forEach(cell => {
+        setElementText(cell, '');
+        setElementStyle(cell, 'color', '');
+        setElementStyle(cell, 'opacity', '1');
         cell.classList.remove('board-cell-win');
     });
-    currentPlayerIndex = Math.floor(Math.random() * 2);
-    turnIndicator.textContent = `${players[currentPlayerIndex].name}'s Turn`;
-    turnIndicator.style.color = players[currentPlayerIndex].color;
-    isGameActive = true;
+    setCurrentPlayerIndex(Math.floor(Math.random() * 2));
+    setElementText(turnIndicator, `${players[currentPlayerIndex].name}'s Turn`);
+    setElementStyle(turnIndicator, 'color', players[currentPlayerIndex].color);
+    setIsGameActive(true);
 }
