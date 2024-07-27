@@ -1,0 +1,18 @@
+{
+  "name": "tic-attack-toe",
+  "version": "1.0.0",
+  "description": "A Tic Tac Toe application with a timer variant.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "Brett Field",
+  "license": "MIT",
+  "engines": {
+    "node": "20.14.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
