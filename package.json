@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "build": "mkdir -p dist && cp -r src dist/ && cp index.html dist/ && cp history.html dist/ && cp -r assets dist/",
     "deploy": "gh-pages -d dist"
   },
   "author": "Brett Field",

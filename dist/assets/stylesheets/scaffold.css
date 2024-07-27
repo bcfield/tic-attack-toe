@@ -1,0 +1,96 @@
+/*
+black         #000000     rgba(0,0,0,0.5)
+white         #ffffff     rgba(255,255,255,0.5)
+grey          #808080     rgba(128,128,128,0.5)
+background    #f9d3bc     rgba(249,211,188,0.5)
+plum          #31102f     rgba(49,16,47,0.5)
+cherry        #5b0134     rgba(91,1,52,0.5)
+apple         #84002f     rgba(132,0,47,0.5)
+orange        #fb5231     rgba(251,82,49,0.5)
+peach         #fa783e     rgba(250,120,62,0.5)
+light         #f8e2d5     rgba(248,226,213,0.5)
+*/
+
+html {
+  background-color: #f9d3bc;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding: 5vh;
+  color: #31102f;
+  font-family: 'Rajdhani', sans-serif;
+  background: url('../images/background.jpg') no-repeat top center fixed;
+  background-size: cover;
+  transition: background-position 0.5s;
+  &.top {
+    justify-content: start;
+  }
+}
+
+body.background-up {
+  background-position: center 45vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #f9d3bc 50%, #31102f 50%);
+  z-index: -1;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-modes {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.countdown {
+  position: fixed;
+  bottom: 8vh;
+  text-align: center;
+}
+
+#countdown-timer {
+  color: #f9d3bc;
+  font-size: 8em;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 1.25rem;
+  background-color: grey;
+  transition: width 0.1s linear;
+}

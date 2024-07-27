@@ -1,0 +1,67 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+input,
+textarea,
+select,
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input:hover,
+textarea:hover,
+select:hover,
+button:hover,
+input:active,
+textarea:active,
+select:active,
+button:active {
+    outline: none;
+    box-shadow: none;
+}
+
+input:-internal-autofill-selected,
+input:-webkit-autofill:focus {
+  background-color: #f6e3d5 !important;
+  -webkit-box-shadow:0 0 0 50px #f6e3d5 inset;
+  -webkit-text-fill-color: #31102f;
+}
