@@ -2,52 +2,27 @@ name: CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [ main, master ]
   pull_request:
-    branches: [main]
+    branches: [ main, master ]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 'lts/*'
-
+        node-version: lts/*
     - name: Install dependencies
       run: npm install -g yarn && yarn
-
     - name: Run Unit Tests
-      run: yarn test
-
+      run: yarn test:unit
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
-
-    - name: Run Playwright tests
-      run: yarn playwright test
-
-  deploy:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: success()
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 'lts/*'
-
-    - name: Install dependencies
-      run: npm install -g yarn && yarn
-
-    - name: Build
-      run: yarn build
-
-    - name: Deploy to GitHub Pages
+    - name: Run Playwright Tests
+      run: yarn test:e2e
+    - name: Build and Deploy
+      if: success()
       run: yarn deploy

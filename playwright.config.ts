@@ -8,10 +8,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    // headless: false,
     trace: 'on-first-retry',
   },
-
   projects: [
     {
       name: 'chromium',
@@ -26,11 +24,10 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-
   webServer: {
-    command: 'serve dist', // Adjust this command as needed
+    command: 'serve dist',
     url: 'http://127.0.0.1:5500',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000, // 2 minutes
+    timeout: 120 * 1000,
   },
 });

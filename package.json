@@ -7,9 +7,10 @@
     "tsc": "tsc",
     "start": "serve dist",
     "build": "rm -rf dist && mkdir -p dist && cp -r src dist/ && cp index.html dist/ && cp history.html dist/ && cp -r assets dist/",
-    "deploy": "yarn test && yarn build && gh-pages -d dist",
+    "deploy": "yarn test:unit && yarn test:e2e && yarn build && gh-pages -d dist",
     "test": "vitest --run",
-    "e2e": "playwright test"
+    "test:unit": "vitest --run",
+    "test:e2e": "playwright test"
   },
   "author": "Brett Field",
   "license": "MIT",
