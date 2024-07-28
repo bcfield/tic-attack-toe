@@ -11,9 +11,16 @@ peach         #fa783e     rgba(250,120,62,0.5)
 light         #f8e2d5     rgba(248,226,213,0.5)
 */
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 html {
   background-color: #f9d3bc;
-  height: 100%;
 }
 
 body {
@@ -23,6 +30,7 @@ body {
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  max-height: 100vh;
   margin: 0;
   padding: 5vh;
   color: #31102f;
