@@ -24,7 +24,8 @@ jobs:
       run: |
         yarn tsc
         yarn test
-        yarn e2e
+        cd e2e
+        yarn playwright test
     - name: Build and Deploy
       if: success()
       run: yarn deploy
