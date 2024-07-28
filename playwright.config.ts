@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = !!process.env.CI;
+const baseURL = isCI ? 'https://bcfield.github.io/tic-attack-toe' : 'http://127.0.0.1:5500';
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -8,6 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
+    baseURL,
     trace: 'on-first-retry',
   },
   projects: [
@@ -24,10 +28,12 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
   ],
-  webServer: {
-    command: 'serve dist',
-    url: 'http://127.0.0.1:5500',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
+  webServer: isCI
+    ? undefined
+    : {
+        command: 'serve dist',
+        url: 'http://127.0.0.1:5500',
+        reuseExistingServer: !process.env.CI,
+        timeout: 120 * 1000,
+      },
 });

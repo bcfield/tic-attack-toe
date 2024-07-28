@@ -19,6 +19,8 @@ jobs:
       run: npm install -g yarn && yarn
     - name: Run Unit Tests
       run: yarn test:unit
+    - name: Build Project
+      run: yarn build
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
     - name: Run Playwright Tests
