@@ -93,15 +93,21 @@ yarn deploy
 ```plaintext
 tic-attack-toe/
 ├── .github/                # GitHub Actions workflows
+├── assets/                 # Stylesheets and images
 ├── dist/                   # Build output (generated)
 ├── e2e/                    # End-to-end tests
 ├── src/                    # Source code
-├── tests/                  # Unit tests
+├── unit/                   # Unit tests
 ├── .gitignore              # Git ignore file
+├── .nvmrc                  # Node version
+├── .yarnrc.yml             # Yarn configuration
+├── history.html            # History page
+├── index.html              # Index page
 ├── package.json            # Project configuration and dependencies
 ├── playwright.config.ts    # Playwright configuration
 ├── README.md               # Project documentation
 ├── tsconfig.json           # TypeScript configuration
+├── vitest.config.js        # Vitest configuration
 └── yarn.lock               # Yarn lock file
 ```
 
