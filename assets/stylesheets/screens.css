@@ -211,10 +211,6 @@
         display: none;
     }
 
-    #screen-game {
-        margin-top: 0;
-    }
-
     .screen.small {
         .mb-6 {
             margin-bottom: 1.5em !important;
