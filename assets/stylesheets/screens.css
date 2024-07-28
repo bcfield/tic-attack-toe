@@ -39,7 +39,8 @@
     z-index: 2;
 }
 
-#history-icon {
+#history-icon,
+#back-icon {
     display: flex;
     align-items: center;
     text-align: center;
@@ -172,4 +173,73 @@
     letter-spacing: 2px;
     line-height: 2;
     text-transform: uppercase;
-}  
+}
+
+@media screen and (max-width: 767px) {
+
+    #game-title {
+        h1 {
+            font-size: 2.5rem;
+        };
+        .material-symbols-outlined {
+            font-size: 6rem;
+        };
+    }
+
+    #icons {
+        position: absolute;
+        top: 1.25em;
+        right: 0.75em;
+        z-index: 2;
+    }
+        
+    .screen,
+    .screen.small,
+    #screen-welcome {
+        width: 85%;
+    }
+
+    #screen-history {
+        max-height: 75vh;
+        overflow: scroll;
+        padding-top: 3vh;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    #screen-history::-webkit-scrollbar {
+        display: none;
+    }
+
+    #screen-game {
+        margin-top: 0;
+    }
+
+    .screen.small {
+        .mb-6 {
+            margin-bottom: 1.5em !important;
+        };
+        .px-5 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
+    .screen-header {
+        text-align: center;
+    }
+
+    #board {
+        grid-template-columns: repeat(3, 25vw);
+        grid-template-rows: repeat(3, 25vw);
+        gap: 1rem;
+    }
+    
+    .board-cell {
+        width: 25vw;
+        height: 25vw;
+        font-size: 5em;
+    }
+    
+}
+  
