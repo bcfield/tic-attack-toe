@@ -23,6 +23,7 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  max-height: 100vh;
   margin: 0;
   padding: 5vh;
   color: #31102f;
