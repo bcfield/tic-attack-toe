@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+const baseURL = process.env.BASE_URL || 'http://127.0.0.1:5500';
+
 test.beforeEach(async ({ page }) => {
   // Open page
-  await page.goto('http://127.0.0.1:5500');
+  await page.goto(baseURL);
 
   // Click on the begin button
   await page.click('#button-begin');
@@ -28,7 +30,7 @@ test('Should limit player 2 name to 16 characters', async ({ page }) => {
   await page.waitForTimeout(600);
   await page.fill('#player2-name-input', '12345678901234567');
 
-  // Verify player 1 name is 16 characters.
+  // Verify player 2 name is 16 characters.
   const playerName = await page.inputValue('#player2-name-input');
   expect(playerName.length).toBe(16);
 });

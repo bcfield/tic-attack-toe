@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+const baseURL = process.env.BASE_URL || 'http://127.0.0.1:5500';
+
 test.beforeEach(async ({ page }) => {
   // Open page
-  await page.goto('http://127.0.0.1:5500');
+  await page.goto(baseURL);
 
   // Click on the begin button
   await page.click('#button-begin');

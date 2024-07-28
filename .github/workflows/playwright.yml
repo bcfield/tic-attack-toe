@@ -24,6 +24,8 @@ jobs:
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
     - name: Run Playwright Tests
+      env:
+        BASE_URL: 'https://bcfield.github.io/tic-attack-toe'
       run: yarn test:e2e
     - name: Build and Deploy
       if: success()
