@@ -200,7 +200,7 @@
     }
 
     #screen-history {
-        max-height: 50vh;
+        max-height: 65vh;
         overflow: scroll;
         padding-top: 3vh;
         -ms-overflow-style: none;
