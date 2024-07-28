@@ -27,6 +27,10 @@ jobs:
       env:
         BASE_URL: 'https://bcfield.github.io/tic-attack-toe'
       run: yarn test:e2e
+    - name: Configure Git
+      run: |
+        git config --global user.email "your-email@example.com"
+        git config --global user.name "Your Name"
     - name: Build and Deploy
       if: success()
       run: yarn deploy
