@@ -1,4 +1,13 @@
-import { players, gameBoard, turnIndicator, globalBoard, isGameActive, currentPlayerIndex, setGameBoard, setCurrentPlayerIndex, setIsGameActive, checkWinner, player1Info, player2Info, player1Progress, player2Progress, player1Name, player2Name, player1Score, player2Score, screenGame, screenCountdown, countdownMessage, countdownTimer, countdownPlayer, fadeOutElement, fadeInElement, createBoard } from './game.js';
+import {
+    players, gameBoard, turnIndicator, globalBoard, isGameActive, currentPlayerIndex, setGameBoard, setCurrentPlayerIndex, setIsGameActive, checkWinner,
+    player1Info, player2Info, player1Progress, player2Progress, player1Name, player2Name, player1Score, player2Score,
+    screenGame, screenCountdown, screenWinner, countdownMessage, countdownTimer, countdownPlayer,
+    fadeOutElement, fadeInElement, createBoard, showCountdown, setGameMode
+} from './game.js';
+
+import { getElementById, addEventListenerToElement } from './utilities.js';
+
+const buttonResetBattle = getElementById('button-reset-battle');
 
 const maxRounds = 5;
 const countdownTime = 5;
@@ -7,6 +16,8 @@ const player2TotalTime = 5;
 let roundCounter = 0;
 let playerTimers;
 let roundStarted = false;
+
+addEventListenerToElement(buttonResetBattle, 'click', resetBattle);
 
 export function startRound() {
     if (roundStarted) return;
@@ -249,20 +260,55 @@ function resetPlayers() {
 function displayFinalResults() {
     const player1FinalScore = players[0].score;
     const player2FinalScore = players[1].score;
+    let winnerMessage = '';
 
     if (player1FinalScore > player2FinalScore) {
-        player1Name.textContent = `${players[0].name} wins!`;
-        player2Name.textContent = `${players[1].name}`;
+        winnerMessage = `${players[0].name} wins!`;
     } else if (player2FinalScore > player1FinalScore) {
-        player2Name.textContent = `${players[1].name} wins!`;
-        player1Name.textContent = `${players[0].name}`;
+        winnerMessage = `${players[1].name} wins!`;
     } else {
-        player1Name.textContent = `${players[0].name} has drawn!`;
-        player2Name.textContent = `${players[1].name} has drawn!`;
+        winnerMessage = "It's a draw!";
     }
 
-    player1Info.style.opacity = '1';
-    player2Info.style.opacity = '1';
+    const winnerNameElement = document.getElementById('winner-name');
+    winnerNameElement.textContent = winnerMessage;
+
+    fadeOutElement(screenGame, () => fadeInElement(screenWinner));
+}
+
+export function resetBattle() {
+    setGameBoard(['', '', '', '', '', '', '', '', '']);
+    Array.from(globalBoard.children).forEach(cell => {
+        cell.textContent = '';
+        cell.style.color = '';
+        cell.style.opacity = '1';
+        cell.classList.remove('board-cell-win');
+    });
+    setCurrentPlayerIndex(Math.floor(Math.random() * 2));
+    updateTurn();
+    roundCounter = 0;
+    players[0].score = 0;
+    players[1].score = 0;
+
+    screenGame.classList.remove('fade-out');
+
+    // Clear player names, scores, and progress bars
+    player1Name.textContent = players[0].name;
+    player2Name.textContent = players[1].name;
+    player1Score.textContent = '0';
+    player2Score.textContent = '0';
     player1Progress.style.width = '100%';
     player2Progress.style.width = '100%';
+    player1Info.style.opacity = '1';
+    player2Info.style.opacity = '1';
+
+    // Reset the game mode and hide the winner screen
+    setGameMode('battle');
+    fadeOutElement(screenWinner, () => {
+        showCountdown();
+    });
+
+    // Clear any active timers
+    clearInterval(playerTimers);
+    roundStarted = false;
 }
