@@ -8,36 +8,25 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: lts/*
     - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npm install -g yarn && yarn
     - name: Run Unit Tests
       run: yarn test:unit
     - name: Build Project
       run: yarn build
+    - name: Install Playwright Browsers
+      run: yarn playwright install --with-deps
     - name: Run Playwright Tests
       env:
         BASE_URL: 'https://bcfield.github.io/tic-attack-toe'
-      run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
-    - name: Configure Git
-      run: |
-        git config --global user.email "brett.field@gmail.com"
-        git config --global user.name "bcfield"
+      run: yarn test:e2e
     - name: Deploy to GitHub Pages
       if: success()
       uses: peaceiris/actions-gh-pages@v3
