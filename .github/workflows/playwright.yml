@@ -29,8 +29,8 @@ jobs:
       run: yarn test:e2e
     - name: Configure Git
       run: |
-        git config --global user.email "your-email@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "brett.field@gmail.com"
+        git config --global user.name "bcfield"
     - name: Build and Deploy
       if: success()
       run: yarn deploy
