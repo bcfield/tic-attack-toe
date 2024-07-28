@@ -106,6 +106,8 @@ header {
 @media screen and (max-width: 767px) {
   body {
     padding: 2vh;
+    min-height: 100dvh;
+    max-height: 100dvh;  
   }
 
   body::before {
