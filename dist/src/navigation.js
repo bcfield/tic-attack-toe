@@ -1,20 +1,22 @@
-const gameTitle = document.getElementById('game-title');
+import { nextScreen, showCountdown, setGameMode, buttonResetZen, player1Progress, player2Progress, fadeOutElement, fadeInElement } from './game.js';
 
-const icons = document.getElementById('icons');
-const iconHome = document.getElementById('icon-home');
-const iconFullscreen = document.getElementById('icon-fullscreen');
-const iconFullscreenExit = document.getElementById('icon-fullscreen-exit');
+export const gameTitle = document.getElementById('game-title');
 
-const screenWelcome = document.getElementById('screen-welcome');
-const screenPlayer1 = document.getElementById('screen-player1');
-const screenPlayer2 = document.getElementById('screen-player2');
-const screenGameMode = document.getElementById('screen-game-mode');
+export const icons = document.getElementById('icons');
+export const iconHome = document.getElementById('icon-home');
+export const iconFullscreen = document.getElementById('icon-fullscreen');
+export const iconFullscreenExit = document.getElementById('icon-fullscreen-exit');
 
-const buttonBegin = document.getElementById('button-begin');
-const buttonNextPlayer1 = document.getElementById('button-next-player1');
-const buttonNextPlayer2 = document.getElementById('button-next-player2');
-const buttonStartZen = document.getElementById('button-start-zen');
-const buttonStartBattle = document.getElementById('button-start-battle');
+export const screenWelcome = document.getElementById('screen-welcome');
+export const screenPlayer1 = document.getElementById('screen-player1');
+export const screenPlayer2 = document.getElementById('screen-player2');
+export const screenGameMode = document.getElementById('screen-game-mode');
+
+export const buttonBegin = document.getElementById('button-begin');
+export const buttonNextPlayer1 = document.getElementById('button-next-player1');
+export const buttonNextPlayer2 = document.getElementById('button-next-player2');
+export const buttonStartZen = document.getElementById('button-start-zen');
+export const buttonStartBattle = document.getElementById('button-start-battle');
 
 buttonBegin.addEventListener('click', () => {
     gameTitle.classList.add('slide-up');
@@ -36,7 +38,7 @@ buttonNextPlayer2.addEventListener('click', () => {
 });
 
 buttonStartZen.addEventListener('click', () => {
-    gameMode = 'zen';
+    setGameMode('zen');
     buttonResetZen.style.display = 'block';
     fadeOutElement(screenGameMode, () => {
         showCountdown();
@@ -44,7 +46,7 @@ buttonStartZen.addEventListener('click', () => {
 });
 
 buttonStartBattle.addEventListener('click', () => {
-    gameMode = 'battle';
+    setGameMode('battle');
     buttonResetZen.style.display = 'none';
     player1Progress.classList.remove('hidden');
     player2Progress.classList.remove('hidden');
@@ -60,25 +62,7 @@ iconHome.addEventListener('click', () => {
     location.reload();
 });
 
-function fadeInElement(element, callback) {
-    element.classList.remove('fade-out');
-    element.classList.add('fade-in');
-    element.classList.remove('hidden');
-    setTimeout(() => {
-        if (callback) callback();
-    }, 500);
-}
-
-function fadeOutElement(element, callback) {
-    element.classList.remove('fade-in');
-    element.classList.add('fade-out');
-    setTimeout(() => {
-        element.classList.add('hidden');
-        if (callback) callback();
-    }, 500);
-}
-
-function enterFullscreen() {
+export function enterFullscreen() {
     const elem = document.documentElement;
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
@@ -93,7 +77,7 @@ function enterFullscreen() {
     iconFullscreenExit.classList.remove('hidden');
 }
 
-function exitFullscreen() {
+export function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {

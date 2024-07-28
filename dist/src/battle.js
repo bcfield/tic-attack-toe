@@ -1,3 +1,5 @@
+import { players, gameBoard, turnIndicator, globalBoard, isGameActive, currentPlayerIndex, setGameBoard, setCurrentPlayerIndex, setIsGameActive, checkWinner, player1Info, player2Info, player1Progress, player2Progress, player1Name, player2Name, player1Score, player2Score, screenGame, screenCountdown, countdownMessage, countdownTimer, countdownPlayer, fadeOutElement, fadeInElement, createBoard } from './game.js';
+
 const maxRounds = 5;
 const countdownTime = 5;
 const player1TotalTime = 5;
@@ -6,7 +8,7 @@ let roundCounter = 0;
 let playerTimers;
 let roundStarted = false;
 
-function startRound() {
+export function startRound() {
     if (roundStarted) return;
 
     roundStarted = true;
@@ -18,14 +20,14 @@ function startRound() {
 
     roundCounter++;
     if (roundCounter > 1) {
-        currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
+        setCurrentPlayerIndex(currentPlayerIndex === 0 ? 1 : 0);
     }
 
     resetPlayers();
     updateTurn();
     createBoard();
     startTimers();
-    isGameActive = true;
+    setIsGameActive(true);
 }
 
 function startTimers() {
@@ -154,7 +156,7 @@ function updateScores(winnerIndex) {
 function battleTimeout(winnerIndex) {
     clearInterval(playerTimers);
     displayBattleResult(`${players[winnerIndex].name} wins by timeout!`, winnerIndex);
-    isGameActive = false;
+    setIsGameActive(false);
     if (roundCounter < maxRounds) {
         setTimeout(showScoreboard, 3000);
     } else {
@@ -162,19 +164,19 @@ function battleTimeout(winnerIndex) {
     }
 }
 
-function battleClick(index) {
+export function battleClick(index) {
     if (gameBoard[index] !== '') return;
     if (!isGameActive) return;
 
     gameBoard[index] = players[currentPlayerIndex].symbol;
-    const cellElement = board.children[index];
+    const cellElement = globalBoard.children[index];
     cellElement.textContent = players[currentPlayerIndex].symbol;
     cellElement.style.color = players[currentPlayerIndex].color;
 
     if (checkWinner()) {
         clearInterval(playerTimers);
         displayBattleResult(`${players[currentPlayerIndex].name} wins!`, currentPlayerIndex);
-        isGameActive = false;
+        setIsGameActive(false);
         setTimeout(() => {
             if (roundCounter < maxRounds) {
                 showScoreboard();
@@ -198,12 +200,12 @@ function battleClick(index) {
         return;
     }
 
-    currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
+    setCurrentPlayerIndex(currentPlayerIndex === 0 ? 1 : 0);
     updateTurn();
 }
 
 function displayBattleResult(message, winnerIndex) {
-    isGameActive = false;
+    setIsGameActive(false);
     if (winnerIndex !== null) {
         players[winnerIndex].score += 500;
 
@@ -223,7 +225,7 @@ function displayBattleResult(message, winnerIndex) {
         player2Info.style.opacity = '1';
     }
 
-    Array.from(board.children).forEach(cell => {
+    Array.from(globalBoard.children).forEach(cell => {
         cell.style.opacity = '0.5';
     });
 

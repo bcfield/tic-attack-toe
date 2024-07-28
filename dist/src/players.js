@@ -1,3 +1,5 @@
+import { screenPlayer2, screenGameMode, nextScreen, disableSelectedColor } from './game.js';
+
 document.querySelectorAll('input').forEach(input => {
     input.addEventListener('input', (e) => {
         const setupId = e.target.id.includes('player1') ? 'player1' : 'player2';
@@ -32,37 +34,3 @@ document.querySelectorAll('.color-circle').forEach(circle => {
         }
     });
 });
-
-function nextScreen(playerId, nextSetup) {
-    const playerName = document.getElementById(`${playerId}-name-input`).value;
-    const selectedColor = document.querySelector(`#${playerId}-colors .selected`);
-
-    if (playerName && selectedColor) {
-        players[playerId === 'player1' ? 0 : 1] = { 
-            name: playerName, 
-            color: selectedColor.dataset.color, 
-            symbol: playerId === 'player1' ? 'X' : 'O',
-            score: 0 
-        };
-        fadeOutElement(document.getElementById(`screen-${playerId}`), () => fadeInElement(nextSetup, () => {
-            if (playerId === 'player1') {
-                document.getElementById('player2-name-input').focus();
-            }
-        }));
-    } else {
-        const nextButton = document.getElementById(`${playerId}-next`);
-        nextButton.disabled = true;
-    }
-}
-
-function disableSelectedColor(color) {
-    document.querySelectorAll('#player2-colors .color-circle').forEach(circle => {
-        if (circle.dataset.color === color) {
-            circle.classList.add('disabled');
-            circle.style.pointerEvents = 'none';
-        } else {
-            circle.classList.remove('disabled');
-            circle.style.pointerEvents = 'auto';
-        }
-    });
-}
