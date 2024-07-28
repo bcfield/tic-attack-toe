@@ -1,6 +1,3 @@
-// game.js
-
-// Define a global board variable
 export let globalBoard = document.getElementById('board');
 
 export function setBoardMock(mock) {

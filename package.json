@@ -4,10 +4,12 @@
   "description": "A Tic Tac Toe application with a timer variant.",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
     "start": "serve dist",
     "build": "rm -rf dist && mkdir -p dist && cp -r src dist/ && cp index.html dist/ && cp history.html dist/ && cp -r assets dist/",
     "deploy": "yarn test && yarn build && gh-pages -d dist",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "e2e": "playwright test"
   },
   "author": "Brett Field",
   "license": "MIT",
@@ -15,10 +17,13 @@
     "node": "20.14.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.45.3",
     "@testing-library/jest-dom": "^6.4.8",
+    "@types/node": "^22.0.0",
     "gh-pages": "^6.1.1",
     "jsdom": "^24.1.1",
     "serve": "^14.2.3",
+    "typescript": "^5.5.4",
     "vitest": "^2.0.4"
   }
 }
