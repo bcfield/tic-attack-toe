@@ -109,7 +109,7 @@ header {
   }
 
   body::before {
-    background: #f9d3bc;
+    background: linear-gradient(to bottom, #f9d3bc 90%, #31102f 90%);
   }
 
   .hidden-mobile {
