@@ -292,17 +292,16 @@ export function resetBattle() {
 
     screenGame.classList.remove('fade-out');
 
-    // Clear player names, scores, and progress bars
     player1Name.textContent = players[0].name;
-    player2Name.textContent = players[1].name;
     player1Score.textContent = '0';
-    player2Score.textContent = '0';
     player1Progress.style.width = '100%';
-    player2Progress.style.width = '100%';
     player1Info.style.opacity = '1';
+
+    player2Name.textContent = players[1].name;
+    player2Score.textContent = '0';
+    player2Progress.style.width = '100%';
     player2Info.style.opacity = '1';
 
-    // Reset the game mode and hide the winner screen
     setGameMode('battle');
     fadeOutElement(screenWinner, () => {
         showCountdown();
