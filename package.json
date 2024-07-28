@@ -7,7 +7,7 @@
     "start": "serve dist",
     "build": "rm -rf dist && mkdir -p dist && cp -r src dist/ && cp index.html dist/ && cp history.html dist/ && cp -r assets dist/",
     "deploy": "yarn test && yarn build && gh-pages -d dist",
-    "test": "vitest"
+    "test": "vitest --run"
   },
   "author": "Brett Field",
   "license": "MIT",

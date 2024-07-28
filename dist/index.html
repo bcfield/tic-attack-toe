@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Attack Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/stylesheets/reset.css">
+    <link rel="stylesheet" href="assets/stylesheets/scaffold.css">
+    <link rel="stylesheet" href="assets/stylesheets/screens.css">
+    <link rel="stylesheet" href="assets/stylesheets/forms.css">
+    <link rel="stylesheet" href="assets/stylesheets/spacing.css">
+    <link rel="stylesheet" href="assets/stylesheets/typography.css">
+    <link rel="stylesheet" href="assets/stylesheets/utilities.css">
+</head>
+<body>
+
+    <header id="game-title" class="fade-in">
+        <h1>TIC ATTACK TOE</h1>
+        <span class="material-symbols-outlined light">shield</span>
+    </header>
+
+    <div id="icons" class="hidden">
+        <span id="icon-home" class="material-symbols-outlined">replay</span>
+        <span id="icon-fullscreen" class="material-symbols-outlined hidden-mobile">fullscreen</span>
+        <span id="icon-fullscreen-exit" class="material-symbols-outlined hidden">fullscreen_exit</span>
+    </div>
+
+    <div id="screen-welcome" class="fade-in">
+        <div class="block text-light">
+            <p>"...a young king was appointed well before his time. His predecessor fell gloriously in battle to tip the scales in favour of his people - but the war was far from over..."</p>
+        </div>
+        <div class="block text-orange">
+            <h5 id="history-icon" class="mb-5" onclick="window.location.href='history.html'">
+                <span class="material-symbols-outlined light">history_edu</span>
+                <span class="hidden-mobile">read more about the&nbsp;</span>lore and legend<span class="hidden-mobile">&nbsp;of the game</span>
+            </h5>
+        </div>
+        <button id="button-begin">begin</button>
+    </div>
+
+    <div id="screen-player1" class="screen hidden fade-in">
+        <div class="screen-header">
+            <h2><span class="hidden-mobile">attention </span>player one</h2>
+        </div>
+        <div class="py-4 px-5">
+            <div class="block text-left">
+                <p class="mb-4">Your troops request a name to address their courageous leader, and the colours of a flag under which they will valiantly fight and die!</p>
+                <p class="text-cherry text-bold">Please enter your name and select a colour below to continue.</p>
+            </div>
+            <div class="block">
+                <input type="text" id="player1-name-input" class="fullwidth" placeholder="Enter your name..." maxlength="16" required autocomplete="off">
+            </div>
+            <div class="block mb-4">
+                <div id="player1-colors" class="color-options">
+                    <div class="color-circle bg-plum" data-color="#31102f"></div>
+                    <div class="color-circle bg-cherry" data-color="#5b0134"></div>
+                    <div class="color-circle bg-apple" data-color="#84002f"></div>
+                    <div class="color-circle bg-orange" data-color="#fb5231"></div>
+                    <div class="color-circle bg-peach" data-color="#fa783e"></div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <button id="button-next-player1" class="fullwidth" disabled>
+                <span class="button-text">continue</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="screen-player2" class="screen hidden fade-in">
+        <div class="screen-header">
+            <h2><span class="hidden-mobile">attention </span>player two</h2>
+        </div>
+        <div class="py-4 px-5">
+            <div class="block text-left">
+                <p class="mb-4">Your opposition has chosen well - be cautious to choose an equally formidable name and different colour, lest your troops begin fighting each other!</p>
+                <p class="text-cherry text-bold">Please enter your name and select a colour below to continue.</p>
+            </div>
+            <div class="block">
+                <input type="text" id="player2-name-input" class="fullwidth" placeholder="Enter your name..." maxlength="16" required autocomplete="off">
+            </div>
+            <div class="block mb-4">
+                <div id="player2-colors" class="color-options">
+                    <div class="color-circle bg-plum" data-color="#31102f"></div>
+                    <div class="color-circle bg-cherry" data-color="#5b0134"></div>
+                    <div class="color-circle bg-apple" data-color="#84002f"></div>
+                    <div class="color-circle bg-orange" data-color="#fb5231"></div>
+                    <div class="color-circle bg-peach" data-color="#fa783e"></div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <button id="button-next-player2" class="fullwidth" disabled>
+                <span class="button-text">continue</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="screen-game-mode" class="hidden fade-in">
+        <div class="game-modes">
+            <div id="button-start-zen" class="screen small">
+                <div class="screen-header mb-6">
+                    <h2>zen<span class="hidden-mobile"> mode</span></h2>
+                </div>
+                <div class="py-4 px-5">
+                    <div class="block">
+                        <span class="material-symbols-outlined large light text-plum">handshake</span>
+                    </div>
+                    <div class="block text-left">
+                        <p class="mb-4">Refine your skills in the classic version of the game without any timers or fear of defeat.</p>
+                    </div>
+                </div>
+                <button class="fullwidth">practice</button>
+            </div>
+            <div id="button-start-battle" class="screen small">
+                <div class="screen-header mb-6">
+                    <h2>battle<span class="hidden-mobile"> mode</span></h2>
+                </div>
+                <div class="py-4 px-5">
+                    <div class="block">
+                        <span class="material-symbols-outlined large light text-plum">swords</span>
+                    </div>
+                    <div class="block text-left">
+                        <p class="mb-4">Battle a worthy opponent in a timed match of five rounds where only one can claim victory.</p>
+                    </div>
+                </div>
+                <button class="fullwidth">fight</button>
+            </div>
+            <div class="controls left hidden-mobile">
+                <h5 class="text-orange">KEYBOARD CONTROL</h5>
+                <h5 class="text-peach mb-4">PLAYER ONE</h5>
+                <div class="game-modes">
+                    <div class="control-grid">
+                        <div class="control-cell">Q</div>
+                        <div class="control-cell">W</div>
+                        <div class="control-cell">E</div>
+                        <div class="control-cell">A</div>
+                        <div class="control-cell">S</div>
+                        <div class="control-cell">D</div>
+                        <div class="control-cell">Z</div>
+                        <div class="control-cell">X</div>
+                        <div class="control-cell">C</div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls right hidden-mobile">
+                <h5 class="text-orange">KEYBOARD CONTROL</h5>
+                <h5 class="text-peach mb-4">PLAYER TWO</h5>
+                <div class="game-modes">
+                    <div class="control-grid">
+                        <div class="control-cell">I</div>
+                        <div class="control-cell">O</div>
+                        <div class="control-cell">P</div>
+                        <div class="control-cell">K</div>
+                        <div class="control-cell">L</div>
+                        <div class="control-cell">;</div>
+                        <div class="control-cell">,</div>
+                        <div class="control-cell">.</div>
+                        <div class="control-cell">/</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-countdown" class="countdown hidden fade-in">
+        <div class="py-4 px-5">
+            <div class="block">
+                <h5 id="countdown-message" class="text-orange"></h5>
+                <p id="countdown-timer"></p>
+                <h5 id="countdown-player" class="text-orange text-uppercase"></h5>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-game" class="hidden fade-in">
+        <div id="turn-timer" class="block mb-4">
+            <div id="player1-info" class="mb-4">
+                <div class="player-info">
+                    <h3 id="player1-name" class="text-left"></h3>
+                    <h3 id="player1-score" class="text-right">0</h3>
+                </div>
+                <div id="player1-progress" class="progress-bar"></div>
+            </div>
+            <div id="player2-info">
+                <div class="player-info">
+                    <h3 id="player2-name" class="text-left"></h3>
+                    <h3 id="player2-score" class="text-right">0</h3>
+                </div>
+                <div id="player2-progress" class="progress-bar"></div>
+            </div>
+        </div>
+        <p id="turn-indicator" class="text-center my-4"></p>
+        <div class="block">
+            <div id="board"></div>
+        </div>
+        <button id="button-reset-zen" class="fullwidth">restart game</button>
+    </div>
+
+    <script type="module" src="src/game.js"></script>
+    <script type="module" src="src/players.js"></script>
+    <script type="module" src="src/zen.js"></script>
+    <script type="module" src="src/battle.js"></script>
+    <script type="module" src="src/navigation.js"></script>
+</body>
+</html>
