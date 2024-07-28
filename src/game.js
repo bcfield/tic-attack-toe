@@ -6,11 +6,13 @@ export function setBoardMock(mock) {
 
 export const screenGame = document.getElementById('screen-game');
 export const screenCountdown = document.getElementById('screen-countdown');
+export const screenWinner = document.getElementById('screen-winner');
 export const countdownMessage = document.getElementById('countdown-message');
 export const countdownTimer = document.getElementById('countdown-timer');
 export const countdownPlayer = document.getElementById('countdown-player');
 
 export const buttonResetZen = document.getElementById('button-reset-zen');
+export const buttonResetBattle = document.getElementById('button-reset-battle');
 
 export const turnTimer = document.getElementById('turn-timer');
 export const turnIndicator = document.getElementById('turn-indicator');

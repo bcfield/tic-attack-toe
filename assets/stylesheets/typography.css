@@ -40,6 +40,10 @@ p {
   color: #fa783e;
 }
 
+.text-background {
+  color: #f6e3d5;
+}
+
 .text-light {
   color: #f6e3d5;
 }
@@ -51,6 +55,9 @@ p {
   margin-right: 0.5rem;
   &.large {
     font-size: 8rem;
+  };
+  &.x-large {
+    font-size: 9rem;
   };
   &.light {
     font-variation-settings: 'wght' 300;

@@ -31,7 +31,9 @@
 
     <div id="screen-welcome" class="fade-in">
         <div class="block text-light">
-            <p>"...a young king was appointed well before his time. His predecessor fell gloriously in battle to tip the scales in favour of his people - but the war was far from over..."</p>
+            <p>"Centuries ago a new king was anointed well before his time.
+                His predecessor fell gloriously in battle to save his people - but his wars were far from over..."
+            </p>
         </div>
         <div class="block text-orange">
             <h5 id="history-icon" class="mb-5" onclick="window.location.href='history.html'">
@@ -199,6 +201,18 @@
             <div id="board"></div>
         </div>
         <button id="button-reset-zen" class="fullwidth">restart game</button>
+    </div>
+
+    <div id="screen-winner" class="winner hidden fade-in">
+        <div class="py-4 px-5">
+            <div class="block">
+                <h5 id="winner-name" class="text-orange"></h5>
+                <div>
+                    <span class="material-symbols-outlined x-large light text-background">military_tech</span>
+                </div>
+                <button id="button-reset-battle">restart match</button>
+            </div>
+        </div>
     </div>
 
     <script type="module" src="src/game.js"></script>
