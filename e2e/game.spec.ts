@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Tic Attack Toe App - Game Details', () => {
+test.describe('Tic Attack Toe App', () => {
 
   test.beforeEach(async ({ page }) => {
     // Open page
@@ -43,7 +43,6 @@ test.describe('Tic Attack Toe App - Game Details', () => {
     await cells.nth(2).click();
     await expect(cells.nth(2)).toHaveText(firstSymbol);
   });
-
 
   test('Should identify a winner', async ({ page }) => {
     const cells = page.locator('.board-cell');
