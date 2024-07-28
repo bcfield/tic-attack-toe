@@ -95,3 +95,16 @@ button:disabled .button-text {
   color: #ffffff;
   font-weight: 500;
 }
+
+@media screen and (max-width: 767px) {
+
+  .color-circle {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .color-circle.selected {
+    border-width: 5px;
+  }
+    
+}

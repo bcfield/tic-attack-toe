@@ -94,3 +94,21 @@ header {
   background-color: grey;
   transition: width 0.1s linear;
 }
+
+@media screen and (max-width: 767px) {
+  body {
+    padding: 2vh;
+  }
+
+  .hidden-mobile {
+    display: none;
+  }
+
+  .game-modes {
+    gap: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  
+}

@@ -25,7 +25,7 @@
 
     <div id="icons" class="hidden">
         <span id="icon-home" class="material-symbols-outlined">replay</span>
-        <span id="icon-fullscreen" class="material-symbols-outlined">fullscreen</span>
+        <span id="icon-fullscreen" class="material-symbols-outlined hidden-mobile">fullscreen</span>
         <span id="icon-fullscreen-exit" class="material-symbols-outlined hidden">fullscreen_exit</span>
     </div>
 
@@ -36,7 +36,7 @@
         <div class="block text-orange">
             <h5 id="history-icon" class="mb-5" onclick="window.location.href='history.html'">
                 <span class="material-symbols-outlined light">history_edu</span>
-                read more about the lore and legend of the game
+                <span class="hidden-mobile">read more about the&nbsp;</span>lore and legend<span class="hidden-mobile">&nbsp;of the game</span>
             </h5>
         </div>
         <button id="button-begin">begin</button>
@@ -44,7 +44,7 @@
 
     <div id="screen-player1" class="screen hidden fade-in">
         <div class="screen-header">
-            <h2>attention player one</h2>
+            <h2><span class="hidden-mobile">attention </span>player one</h2>
         </div>
         <div class="py-4 px-5">
             <div class="block text-left">
@@ -73,7 +73,7 @@
 
     <div id="screen-player2" class="screen hidden fade-in">
         <div class="screen-header">
-            <h2>attention player two</h2>
+            <h2><span class="hidden-mobile">attention </span>player two</h2>
         </div>
         <div class="py-4 px-5">
             <div class="block text-left">
@@ -104,7 +104,7 @@
         <div class="game-modes">
             <div id="button-start-zen" class="screen small">
                 <div class="screen-header mb-6">
-                    <h2>zen mode</h2>
+                    <h2>zen<span class="hidden-mobile"> mode</span></h2>
                 </div>
                 <div class="py-4 px-5">
                     <div class="block">
@@ -118,7 +118,7 @@
             </div>
             <div id="button-start-battle" class="screen small">
                 <div class="screen-header mb-6">
-                    <h2>battle mode</h2>
+                    <h2>battle<span class="hidden-mobile"> mode</span></h2>
                 </div>
                 <div class="py-4 px-5">
                     <div class="block">
@@ -130,7 +130,7 @@
                 </div>
                 <button class="fullwidth">fight</button>
             </div>
-            <div class="controls left">
+            <div class="controls left hidden-mobile">
                 <h5 class="text-orange">KEYBOARD CONTROL</h5>
                 <h5 class="text-peach mb-4">PLAYER ONE</h5>
                 <div class="game-modes">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
             </div>
-            <div class="controls right">
+            <div class="controls right hidden-mobile">
                 <h5 class="text-orange">KEYBOARD CONTROL</h5>
                 <h5 class="text-peach mb-4">PLAYER TWO</h5>
                 <div class="game-modes">
