@@ -23,7 +23,6 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  max-height: 100vh;
   margin: 0;
   padding: 5vh;
   color: #31102f;
@@ -99,6 +98,10 @@ header {
 @media screen and (max-width: 767px) {
   body {
     padding: 2vh;
+  }
+
+  body::before {
+    background: #f9d3bc;
   }
 
   .hidden-mobile {
